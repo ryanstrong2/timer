@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<h1 th:text="${title}">Title</h1>
+<nav th:replace="fragments:: navigation"></nav>
+
+<form method="post" style="max-width:600px;">
+    <div class="form-group">
+        <label form="number-field">Amount</label>
+        <input class="form-control" id="number-field" type="int" name="timeAmount"/>
+    </div>
+    <!--<input type="text" name="timeAmount"/>-->
+    <input type="submit" value="Delete Time"/>
+</form>
+</body>
+</html>

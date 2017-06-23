@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+<body class="container">
+<h1 th:text="${title}">Strong</h1>
+<nav th:replace="fragments::navigation"></nav>
+<ul>
+    <li th:each="timer:${timers}" th:text="${timer.??}"></li>
+</ul>
+
+</body>
+</html>

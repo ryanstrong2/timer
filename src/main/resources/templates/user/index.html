@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<h1 th:text="${title}">Strong</h1>
+<nav th:replace="fragments:: navigation"></nav>
+<ul>
+    <li th:each="user : ${users}">
+        <a th:href="'/user/view/' + ${user.id}" th:text="${user.name}"></a>
+    </li>
+</ul>
+
+<p><a href="/user/add">Add User</a></p>
+</body>
+</html>
