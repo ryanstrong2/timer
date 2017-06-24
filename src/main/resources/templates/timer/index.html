@@ -5,11 +5,16 @@
 <h1 th:text="${title}">Default Title</h1>
 <nav th:replace="fragments:: navigation"></nav>
 <p th:unless="${times} and ${times.size()}">no time</p>
-<ul>
+<table class="table">
+    <tr>
+        <th>Number</th>
+    </tr>
+</table>
+<!--<ul>-->
     <!--finds in model{} access the data-->
-    <li th:each ="time:${times}" th:text="${time}"></li>
+    <!--<li th:each ="time:${times}" th:text="${time}"></li>-->
     <!--//${} looks in model -->
 <!--//       iterator variable    refers to iterator variable-->
-</ul>
+<!--</ul>-->
 </body>
 </html>

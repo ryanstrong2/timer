@@ -22,8 +22,10 @@ import javax.validation.Valid;
 public class UserController {
     @Autowired
     private TimerDao timerDao;
-    @Autowired
+
+    @Autowired// creates class and object
     private UserDao userDao;
+
     @RequestMapping(value="")
     public String index(Model model){
         model.addAttribute("title", "Users");
@@ -44,7 +46,7 @@ public class UserController {
         }
 //    todo    userDao.add(newUser);
         userDao.save(newUser);
-        return "redirect:view/" + newUser.getUserId();
+        return "redirect:view/" + newUser.getId();
 //        return "user";
     }
     @RequestMapping(value="view/{userId}", method = RequestMethod.GET)

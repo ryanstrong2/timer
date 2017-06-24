@@ -1,6 +1,7 @@
 package org.ryanstrong.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 //import javax.validation.constraints.NotNull;
@@ -15,24 +16,21 @@ public class Timer {
 
     @Id
     @GeneratedValue
-    private int timerId;
+    private int id;
     private int number;
 //    private static int nextId=1;
+    @OneToMany
+    @JoinColumn(name="timer_id")
+    private List<User> users = new ArrayList<>();
 
-    @JoinColumn
-    @OneToMany(mappedBy="timers")
-    private List<User> users;
-
+    public Timer() {
+    }
     public Timer(int number) {
-        this();
         this.number = number;
     }
-    public Timer(){
-//        timerId=nextId;
-//        nextId++;
-    }
-    public int getTimerId() {
-        return timerId;
+
+    public int getId() {
+        return id;
     }
 
     public int getNumber() {
@@ -41,5 +39,11 @@ public class Timer {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+    public List<User> getUsers(){return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

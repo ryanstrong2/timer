@@ -33,8 +33,6 @@ public class TimerController {
         //Request path: /timer
     @RequestMapping(value="")
     public String index(Model model){
-
-//            ArrayList<String> times = new ArrayList<>();
 //            times.add("one");
 //       todo get findAll to work
         model.addAttribute("times", timerDao.findAll());

@@ -2,8 +2,8 @@ package org.ryanstrong.models;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 /**
  * Created by ryanstrong on 6/12/17.
@@ -11,30 +11,45 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue
-    private int userId;
+    private int id;
 
     @NotNull
     private String name;
 
+    private Integer timeToPlay;
+
+    @ManyToOne
+    private Timer timer;
+
+    public User(String name, Integer timeToPlay){
+        this.name = name;
+        this.timeToPlay = timeToPlay;
+    }
     public User(){}
 
-//    @ManyToMany
-    private List<Timer> timers;
+    public String getName() {return name;}
 
-    public User(String name){
-        this.name = name;
+    public void setName(String name) {this.name = name;}
+
+    public Integer getTimeToPlay() {
+        return timeToPlay;
+    }
+    public void setTimeToPlay(Integer timeToPlay) {
+        this.timeToPlay = timeToPlay;
     }
 
-
-
-//    public void addMinute(Timer newUser){ timers.add(minute)}
-    public User(List<Timer> timers, String name){
-        this.timers=timers;
-        this.name = name;
-    }
-
-    public int getUserId()
+    public int getId()
     {
-        return userId;
+        return id;
     }
+    public Timer getTimer(){ return timer;}
+
+    public void setTimer(Timer timer) {
+        this.timer = timer;
+    }
+    //    public void addMinute(Timer newUser){ timers.add(minute)}
+//    public User(List<Timer> timers, String name){
+//        this.timers=timers;
+//        this.name = name;
+//    }
 }
