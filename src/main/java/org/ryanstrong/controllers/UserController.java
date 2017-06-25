@@ -1,5 +1,6 @@
 package org.ryanstrong.controllers;
 
+import org.ryanstrong.models.Timer;
 import org.ryanstrong.models.User;
 import org.ryanstrong.models.data.TimerDao;
 import org.ryanstrong.models.data.UserDao;
@@ -12,7 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ryanstrong on 6/12/17.
@@ -25,6 +29,10 @@ public class UserController {
 
     @Autowired// creates class and object
     private UserDao userDao;
+
+    @OneToMany
+    @org.ryanstrong.models.JoinColumn(name="User_id")
+    private List<Timer> timers = new ArrayList<>();
 
     @RequestMapping(value="")
     public String index(Model model){
@@ -51,9 +59,22 @@ public class UserController {
     }
     @RequestMapping(value="view/{userId}", method = RequestMethod.GET)
     public  String view(Model model, @PathVariable int userId){
-//        User theUser = UserDao.findOne(Id);
-        model.addAttribute("title", userId);
-        return "user/view/{userId}";
+        User user = userDao.findOne(userId);
+
+        model.addAttribute("title", user.getName());
+        model.addAttribute("times", user.getTimeToPlay());
+        return "user/view";
+    }
+    @RequestMapping(value="view", method = RequestMethod.POST)
+    public String view(Model model, @ModelAttribute @Valid Timer newTimer, @PathVariable int userId,
+            Errors errors){
+        if(errors.hasErrors()){
+            model.addAttribute("title", "Change Time");
+            return "user/view/{userId}";
+        }
+
+        User user = userDao.findOne(userId);
+        return "user/view/" + user.getId();
     }
 
 }

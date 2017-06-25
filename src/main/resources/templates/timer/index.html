@@ -3,18 +3,22 @@
 <head th:replace="fragments :: head"></head>
 <body>
 <h1 th:text="${title}">Default Title</h1>
-<nav th:replace="fragments:: navigation"></nav>
-<p th:unless="${times} and ${times.size()}">no time</p>
+<nav th:replace="fragments:: navigationTimer"></nav>
+<nav th:replace="fragments:: footer"></nav>
+<p th:unless="${timers} and ${timers.size()}">no time</p>
 <table class="table">
     <tr>
-        <th>Number</th>
+        <th>Time Amount</th>
+    </tr>
+    <tr th:each ="timer:${timers}">
+        <td  th:text="${timer.number}"></td>
     </tr>
 </table>
-<!--<ul>-->
+<ul>
     <!--finds in model{} access the data-->
-    <!--<li th:each ="time:${times}" th:text="${time}"></li>-->
+
     <!--//${} looks in model -->
 <!--//       iterator variable    refers to iterator variable-->
-<!--</ul>-->
+</ul>
 </body>
 </html>

@@ -4,9 +4,24 @@
 <body class="container">
 <h1 th:text="${title}">Strong</h1>
 <nav th:replace="fragments::navigation"></nav>
+<nav th:replace="fragments:: footer"></nav>
+
+<form method="post" style="max-width:600px;" th:objects="${form}" action="/menu/view">
+    <div class="form-group">
+        <select name ="timerId">
+            <option th:each="timer: *{timers}"
+                    th:text="${timer.number}"
+                    th:value="${timer.id}">
+                <span th:errors="*{timerId}" class="error"></span>
+            </option>
+        </select>
+    </div>
+</form>
 <ul>
-    <li th:each="timer:${timers}" th:text="${timer.??}"></li>
+    <li th:each="user:${users}" th:text="${user.name}"></li>
+    <li th:each="timer:${timers}" th:text="${timer.number}"></li>
 </ul>
+<!--<p th:unless="${users.size()}">users have not been entered</p>-->
 
 </body>
 </html>

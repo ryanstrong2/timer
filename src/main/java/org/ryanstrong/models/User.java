@@ -1,5 +1,7 @@
 package org.ryanstrong.models;
 
+
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -8,6 +10,7 @@ import javax.validation.constraints.NotNull;
 /**
  * Created by ryanstrong on 6/12/17.
  */
+@Entity
 public class User {
     @Id
     @GeneratedValue

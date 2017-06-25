@@ -4,6 +4,8 @@
 <body>
 <h1 th:text="${title}">Strong</h1>
 <nav th:replace="fragments:: navigation"></nav>
+<nav th:replace="fragments:: footer"></nav>
+
 <ul>
     <li th:each="user : ${users}">
         <a th:href="'/user/view/' + ${user.id}" th:text="${user.name}"></a>
