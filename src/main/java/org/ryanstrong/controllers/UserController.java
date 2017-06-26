@@ -4,14 +4,12 @@ import org.ryanstrong.models.Timer;
 import org.ryanstrong.models.User;
 import org.ryanstrong.models.data.TimerDao;
 import org.ryanstrong.models.data.UserDao;
+import org.ryanstrong.models.forms.ChangeTimeForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
@@ -57,24 +55,42 @@ public class UserController {
         return "redirect:view/" + newUser.getId();
 //        return "user";
     }
+    @RequestMapping(value="remove", method=RequestMethod.GET)
+    public String displayRemoveTimeForm(Model model){
+        model.addAttribute("timers", timerDao.findAll());
+        model.addAttribute("title", "Remove Time");
+        return  "timer/remove";
+    }
+    @RequestMapping(value="remove", method = RequestMethod.POST)
+    public String processRemoveTimerForm(@RequestParam int [] ids){
+        for (int id:ids){
+            timerDao.delete(id);
+        }
+        return "redirect:";
+    }
     @RequestMapping(value="view/{userId}", method = RequestMethod.GET)
     public  String view(Model model, @PathVariable int userId){
         User user = userDao.findOne(userId);
-
+        ChangeTimeForm form = new ChangeTimeForm(timerDao.findAll(), user);
         model.addAttribute("title", user.getName());
-        model.addAttribute("times", user.getTimeToPlay());
+        model.addAttribute("timeToPlay", user.getTimeToPlay());
+        model.addAttribute("form", form);
         return "user/view";
     }
     @RequestMapping(value="view", method = RequestMethod.POST)
-    public String view(Model model, @ModelAttribute @Valid Timer newTimer, @PathVariable int userId,
+    public String view(Model model, @ModelAttribute @Valid ChangeTimeForm form,
+                       @RequestParam int timerId,
             Errors errors){
         if(errors.hasErrors()){
-            model.addAttribute("title", "Change Time");
+            model.addAttribute("form", form);
             return "user/view/{userId}";
         }
 
-        User user = userDao.findOne(userId);
-        return "user/view/" + user.getId();
+        User theUser = userDao.findOne(form.getUserId());
+        Timer theTimer = timerDao.findOne(form.getTimerId());
+//        theUser.view(theTimer);
+        userDao.save(theUser);
+        return "user/view/" + theUser.getId();
     }
 
 }

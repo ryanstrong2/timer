@@ -16,11 +16,14 @@
             </option>
         </select>
     </div>
+    <input type="hidden" name="userId" th:value="${userId}"/>
+    <input type="submit" value ="Edit Time"/>
 </form>
-<ul>
-    <li th:each="user:${users}" th:text="${user.name}"></li>
-    <li th:each="timer:${timers}" th:text="${timer.number}"></li>
-</ul>
+<h5 th:text="${timeToPlay}">none available</h5>
+<!--<ul>-->
+    <!--<li th:each="user:${users}" th:text="${user.name}"></li>-->
+    <!--<li th:each="timer:${timers}" th:text="${timer.number}"></li>-->
+<!--</ul>-->
 <!--<p th:unless="${users.size()}">users have not been entered</p>-->
 
 </body>
