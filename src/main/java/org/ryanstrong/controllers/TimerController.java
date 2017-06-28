@@ -43,6 +43,8 @@ public class TimerController {
         model.addAttribute("timer", timerDao.findAll());
                         //("key", localVariable or "enter the string")
         model.addAttribute("title", "Strong Timer");
+        model.addAttribute("timers", timerDao.findAll());
+
         return "timer/index";
     }
     @RequestMapping (value="add", method = RequestMethod.GET)

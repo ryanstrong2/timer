@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+<body class="container">
+<h1 th:text="${title}">Strong</h1>
+<nav th:replace="fragments::navigation"></nav>
+<nav th:replace="fragments:: footer"></nav>
+
+<form method="post" style="max-width:600px;" th:objects="${form}" action="/menu/edit">
+    <div class="form-group">
+        <select name ="timerId">
+            <option th:each="timer: *{timers}"
+                    th:text="${timer.number}"
+                    th:value="${timer.id}">
+                <span th:errors="*{timerId}" class="error"></span>
+            </option>
+        </select>
+    </div>
+    <input type="hidden" name="userId" th:value="${userId}"/>
+    <input type="submit" value ="Edit Time"/>
+</form>
+<h5 th:text="${timeToPlay}">none available</h5>
+<ul>
+    <li th:each="timer : ${timers}" th:text="${timer.number}"></li>
+</ul>
+<p th:unless="${users.size()}">users have not been entered</p>
+
+</body>
+</html>

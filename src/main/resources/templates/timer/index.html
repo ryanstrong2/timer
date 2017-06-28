@@ -17,6 +17,8 @@
 <ul>
     <!--finds in model{} access the data-->
 
+    <li th:each="timer : ${timers}" th:text="${timer.number}"></li>
+
     <!--//${} looks in model -->
 <!--//       iterator variable    refers to iterator variable-->
 </ul>
