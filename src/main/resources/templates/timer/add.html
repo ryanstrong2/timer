@@ -11,11 +11,9 @@
     <div class="form-group">
         <!--<label form="number-field">Amount</label>-->
         <label th:for="number">Name</label>
-
         <input class="form-control" th:field ="*{number}"/>
                <!--id="timer.number" type="int" name="timeAmount"-->
-
-        <span th:errors="*{name}" class="error"></span>
+        <span th:errors="*{number}" class="error"></span>
     </div>
     <!--<input type="text" name="timeAmount"/>-->
     <input type="submit" value="Add Time"/>

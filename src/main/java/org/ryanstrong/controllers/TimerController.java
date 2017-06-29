@@ -50,7 +50,7 @@ public class TimerController {
     @RequestMapping (value="add", method = RequestMethod.GET)
     public String displayAddTimeForm(Model model){
         model.addAttribute("title", "Add Time");
-        model.addAttribute("times", new Timer());
+        model.addAttribute( new Timer());
         return "timer/add";
     }
     @RequestMapping (value="add", method = RequestMethod.POST)
@@ -64,7 +64,7 @@ public class TimerController {
         return "redirect:";
     }
     @RequestMapping(value = "remove", method = RequestMethod.GET)
-    public String displayRemoveTimeForm(Model model){
+    public String showChangeTimeForm(Model model){
 //      todo
         model.addAttribute("timers", timerDao.findAll());
         model.addAttribute("title", "Reduce Time");
@@ -72,7 +72,7 @@ public class TimerController {
 
     }
     @RequestMapping(value="remove", method = RequestMethod.POST)
-    public String processRemoveTimeForm(@RequestParam int[] timerIds){
+    public String processChangeTimeForm(@RequestParam int[] timerIds){
         for(int timerId:timerIds){
 //        todo delete doesn't work
         timerDao.delete(timerId);
