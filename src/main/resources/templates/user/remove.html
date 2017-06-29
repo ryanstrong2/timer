@@ -7,15 +7,22 @@
 <body>
 <h1 th:text="${title}">Title</h1>
 <nav th:replace="fragments:: navigation"></nav>
-<nav th:replace="fragments:: footer"></nav>
+
 
 <form method="post" style="max-width:600px;">
-    <div class="form-group">
-        <label form="number-field">User</label>
-        <input class="form-control" id="userId" type="int" name="timeAmount"/>
+    <div th:each="user:${users}" class="checkbox">
+        <input type="checkbox" name="userIds" th:value="${user.id}" th:id="${user.id}"/>
+        <label th:for="${user.id}" th:text="${user.name}"></label>
+        <br/>
     </div>
+    <!--<div class="form-group">-->
+        <!--<label form="number-field">User</label>-->
+        <!--<input class="form-control" id="userId" type="int" name="timeAmount"/>-->
+    <!--</div>-->
     <!--<input type="text" name="timeAmount"/>-->
     <input type="submit" value="Remove User"/>
 </form>
+<nav th:replace="fragments:: footer"></nav>
+
 </body>
 </html>

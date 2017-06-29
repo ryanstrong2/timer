@@ -56,15 +56,15 @@ public class UserController {
 //        return "user";
     }
     @RequestMapping(value="remove", method=RequestMethod.GET)
-    public String displayRemoveTimeForm(Model model){
-        model.addAttribute("timers", timerDao.findAll());
-        model.addAttribute("title", "Remove Time");
-        return  "timer/remove";
+    public String displayRemoveUserForm(Model model){
+        model.addAttribute("users", userDao.findAll());
+        model.addAttribute("title", "Remove Users");
+        return  "user/remove";
     }
     @RequestMapping(value="remove", method = RequestMethod.POST)
-    public String processRemoveTimerForm(@RequestParam int [] ids){
-        for (int id:ids){
-            timerDao.delete(id);
+    public String processRemoveUserForm(@RequestParam int [] userIds){
+        for (int userId:userIds){
+            userDao.delete(userId);
         }
         return "redirect:";
     }
