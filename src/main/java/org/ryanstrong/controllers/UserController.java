@@ -74,27 +74,27 @@ public class UserController {
         ChangeTimeForm form = new ChangeTimeForm(timerDao.findAll(), user);
         model.addAttribute("title", user.getName());
 //        model.addAttribute("timeToPlay", user.getTimer());
-        model.addAttribute("timer", user.getTimer());
+        model.addAttribute("timer", user.getName());
         model.addAttribute("form", form);
         model.addAttribute("users", userDao.findAll());
         model.addAttribute("timers", timerDao.findAll());
 
-        return "user/view";
+        return "user/edit";
     }
     @RequestMapping(value="edit", method = RequestMethod.POST)
     public String edit(Model model, @ModelAttribute @Valid ChangeTimeForm form,
-                       @RequestParam int timerId,
+                       @RequestParam int timerId, @RequestParam int userId,
             Errors errors){
         if(errors.hasErrors()){
             model.addAttribute("form", form);
-            return "user/view/{userId}";
+            return "user/edit/{userId}";
         }
 
         User theUser = userDao.findOne(form.getUserId());
         Timer theTimer = timerDao.findOne(form.getTimerId());
         theUser.setTimer(theTimer);
         userDao.save(theUser);
-        return "user/view/" + theUser.getId();
+        return "user/edit/" + theUser.getId();
     }
     @RequestMapping(value="view/{userId}", method = RequestMethod.GET)
     public  String view(Model model, @PathVariable int userId){

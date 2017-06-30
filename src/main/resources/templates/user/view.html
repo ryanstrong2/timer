@@ -4,7 +4,6 @@
 <body class="container">
 <h1 th:text="${title}">Strong</h1>
 <nav th:replace="fragments::navigation"></nav>
-<nav th:replace="fragments:: footer"></nav>
 
 <!--<form method="post" style="max-width:600px;" th:objects="${form}" action="/menu/view">-->
     <!--<div class="form-group">-->
@@ -24,9 +23,14 @@
     <!--<li th:each="user:${users}" th:text="${user.name}"></li>-->
     <li th:each="timer:${timers}" th:text="${timer.number}"></li>
 </ul>
-<p th:unless="${users.size()}">users have not been entered</p>
+<p th:unless="${timers==null}">users have not been given time</p>
+<li th:each="user : ${users}">
+    <a th:href ="'/user/edit/' + ${user.id}" th:text="${user.name } +  Add"> Add Time </a>  |
+    <a th:href="'/user/remove/' + ${user.id}" th:text="${user.name}">Remove Time</a>
+</li>
+<!--<nav th:replace="fragments:: nav"></nav>-->
+<nav th:replace="fragments:: footer"></nav>
 
-<nav th:replace="fragments:: nav"></nav>
 
 </body>
 </html>
