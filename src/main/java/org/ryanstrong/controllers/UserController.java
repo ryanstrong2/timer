@@ -94,14 +94,41 @@ public class UserController {
         Timer theTimer = timerDao.findOne(form.getTimerId());
         theUser.setTimer(theTimer);
         userDao.save(theUser);
-        return "user/edit/" + theUser.getId();
+        return "user/edit/{userId}";
+    }
+    @RequestMapping(value="remove-time/{userId}", method = RequestMethod.GET)
+    public  String removeTime(Model model, @PathVariable int userId) {
+        User user = userDao.findOne(userId);
+        ChangeTimeForm form = new ChangeTimeForm(timerDao.findAll(), user);
+        model.addAttribute("title", user.getName());
+        model.addAttribute("timeToPlay", user.getTimer());
+        model.addAttribute("timers", timerDao.findAll());
+        model.addAttribute("users", userDao.findAll());
+
+        model.addAttribute("form", form);
+        return "user/remove-time";
+    }
+    @RequestMapping(value="view", method = RequestMethod.POST)
+    public String processRemoveTime(Model model, @ModelAttribute @Valid ChangeTimeForm form,
+                       @RequestParam int timerId,
+                       Errors errors){
+        if(errors.hasErrors()){
+            model.addAttribute("form", form);
+            return "user/view/{userId}";
+        }
+
+        User theUser = userDao.findOne(form.getUserId());
+        Timer theTimer = timerDao.findOne(form.getTimerId());
+        theUser.setTimer(theTimer);
+        userDao.save(theUser);
+        return "user/view/" + theUser.getId();
     }
     @RequestMapping(value="view/{userId}", method = RequestMethod.GET)
     public  String view(Model model, @PathVariable int userId){
         User user = userDao.findOne(userId);
         ChangeTimeForm form = new ChangeTimeForm(timerDao.findAll(), user);
         model.addAttribute("title", user.getName());
-//        model.addAttribute("timeToPlay", user.getTimer());
+        model.addAttribute("timeToPlay", user.getTimer());
         model.addAttribute("timers", timerDao.findAll());
         model.addAttribute("users", userDao.findAll());
 

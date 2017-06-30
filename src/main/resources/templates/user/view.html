@@ -8,22 +8,26 @@
 <!--<form method="post" style="max-width:600px;" th:objects="${form}" action="/menu/view">-->
     <!--<div class="form-group">-->
         <!--<select name ="timerId">-->
-            <!--<option th:each="timer: *{timers}"-->
-                    <!--th:text="${timer.number}"-->
-                    <!--th:value="${timer.id}">-->
-                <!--<span th:errors="*{timerId}" class="error"></span>-->
-            <!--</option>-->
+           <table style="max-width:600px;" th:objects="${form}" action="/menu/view">
+            <td th:each="timer: *{timers}"
+                    th:text="${timer.number}"
+                    th:value="${timer.id}">
+                <span th:errors="*{timerId}" class="error"></span>
+            </td>
+           </table>
+<p th:text="${timeToPlay}"/>
+<p th:text="${timer}"/>
         <!--</select>-->
     <!--</div>-->
     <!--<input type="hidden" name="userId" th:value="${userId}"/>-->
     <!--<input type="submit" value ="Edit Time"/>-->
 <!--</form>-->
 <h5 th:text="${timeToPlay}">none available</h5>
-<ul>
+<!--<ul>-->
     <!--<li th:each="user:${users}" th:text="${user.name}"></li>-->
-    <li th:each="timer:${timers}" th:text="${timer.number}"></li>
-</ul>
-<p th:unless="${timers==null}">users have not been given time</p>
+    <!--<li th:each="timer:${timers}" th:text="${timer.number}"></li>-->
+<!--</ul>-->
+<p th:if="${timers==null}">users have not been given time</p>
 <li th:each="user : ${users}">
     <a th:href ="'/user/edit/' + ${user.id}" th:text="${user.name } +  Add"> Add Time </a>  |
     <a th:href="'/user/remove/' + ${user.id}" th:text="${user.name}">Remove Time</a>
