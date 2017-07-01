@@ -5,7 +5,7 @@
 <h1 th:text="${title}">Default Title</h1>
 <nav th:replace="fragments:: navigationTimer"></nav>
 <nav th:replace="fragments:: footer"></nav>
-<p th:unless="${timers} and ${timers.size()}">no time</p>
+<p th:unless="${timers} and ${timers!=null}">no time</p>
 <table class="table">
     <tr>
         <th>Time Amount</th>
@@ -17,7 +17,7 @@
 <ul>
     <!--finds in model{} access the data-->
 
-    <li th:each="timer : ${timers}" th:text="${timer.number}"></li>
+    <!--<li th:each="timer : ${timers}" th:text="${timer.number}"></li>-->
 
     <!--//${} looks in model -->
 <!--//       iterator variable    refers to iterator variable-->

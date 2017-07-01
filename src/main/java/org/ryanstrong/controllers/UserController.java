@@ -108,7 +108,7 @@ public class UserController {
         model.addAttribute("form", form);
         return "user/remove-time";
     }
-    @RequestMapping(value="view", method = RequestMethod.POST)
+    @RequestMapping(value="remove-time", method = RequestMethod.POST)
     public String processRemoveTime(Model model, @ModelAttribute @Valid ChangeTimeForm form,
                        @RequestParam int timerId,
                        Errors errors){
