@@ -2,11 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body>
-<h1 th:text="${title}">Default Title</h1>
+<h1 th:text="${title}" style="max-width:600px;" >Default Title</h1>
 <nav th:replace="fragments:: navigationTimer"></nav>
-<nav th:replace="fragments:: footer"></nav>
-<p th:unless="${timers} and ${timers!=null}">no time</p>
-<table class="table">
+<p th:if=" ${timers==null}">no time</p>
+<table class="table" style="max-width:600px;" >
     <tr>
         <th>Time Amount</th>
     </tr>
@@ -14,13 +13,16 @@
         <td  th:text="${timer.number}"></td>
     </tr>
 </table>
-<ul>
+
+<nav th:replace="fragments:: footer"></nav>
+
+<!--<ul>-->
     <!--finds in model{} access the data-->
 
     <!--<li th:each="timer : ${timers}" th:text="${timer.number}"></li>-->
 
     <!--//${} looks in model -->
 <!--//       iterator variable    refers to iterator variable-->
-</ul>
+<!--</ul>-->
 </body>
 </html>

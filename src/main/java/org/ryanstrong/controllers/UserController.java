@@ -89,8 +89,10 @@ public class UserController {
             model.addAttribute("form", form);
             return "user/edit/{userId}";
         }
-
         User theUser = userDao.findOne(form.getUserId());
+        ChangeTimeForm addForm = new ChangeTimeForm(timerDao.findAll(), theUser);
+
+
         Timer theTimer = timerDao.findOne(form.getTimerId());
         theUser.setTimer(theTimer);
         userDao.save(theUser);

@@ -9,11 +9,14 @@
     <!--<div class="form-group">-->
         <!--<select name ="timerId">-->
            <table style="max-width:600px;" th:objects="${form}" action="/menu/view">
-            <td th:each="timer: *{timers}"
+            <tr th:each="timer: *{timers}"
                     th:text="${timer.number}"
-                    th:value="${timer.id}">
+                    th:value="${timerId}">
                 <span th:errors="*{timerId}" class="error"></span>
-            </td>
+                <!--<tr th:each ="timer:${timers}">-->
+                    <!--<td  th:text="${timer.number}"></td>-->
+                </tr>
+            <!--</td>-->
            </table>
 <p th:text="${timeToPlay}"/>
 <p th:text="${timer}"/>
@@ -29,7 +32,7 @@
 <!--</ul>-->
 <p th:if="${timers==null}">users have not been given time</p>
 <li th:each="user : ${users}">
-    <a th:href ="'/user/edit/' + ${user.id}" th:text="${user.name } +  Add"> Add Time </a>  |
+    <a th:href ="'/user/edit/' + ${user.id}" th:text="${user.name } + '  Add'"> Add Time </a>  |
     <a th:href="'/user/remove/' + ${user.id}" th:text="${user.name}">Remove Time</a>
 </li>
 <!--<nav th:replace="fragments:: nav"></nav>-->
