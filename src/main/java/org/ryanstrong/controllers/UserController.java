@@ -134,7 +134,7 @@ public class UserController {
         model.addAttribute("timeToPlay", user.getTimer());
 //        model.addAttribute("timers", timerDao.findAll());
         model.addAttribute("timers", user.getTimer());
-//        model.addAttribute("users", userDao.findAll());
+        model.addAttribute("users", userDao.findAll());
         model.addAttribute("user", user.getId());
         model.addAttribute("form", form);
         return "user/view";

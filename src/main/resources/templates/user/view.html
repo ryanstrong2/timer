@@ -36,10 +36,10 @@
 <!--</ul>-->
 <p th:if="${timers==null}">users have not been given time</p>
 
-<li th:each="user : ${users}">
+<p th:each="user : ${users}">
     <a th:href ="'/user/edit/' + ${user.id}" th:text="${user.name } + '  Add'"> Add Time </a>  |
     <a th:href="'/user/remove-time/' + ${user.id}" th:text="${user.name} + '  Subtract'">Remove Time</a>
-</li>
+</p>
 <nav th:replace="fragments:: footer"></nav>
 
 
