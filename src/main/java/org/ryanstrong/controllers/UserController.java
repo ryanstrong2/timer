@@ -111,8 +111,9 @@ public class UserController {
         return "user/remove-time";
     }
     @RequestMapping(value="remove-time", method = RequestMethod.POST)
-    public String processRemoveTime(Model model, @ModelAttribute @Valid ChangeTimeForm form,
-                       @RequestParam int timerId,
+    public String processRemoveTime(
+            Model model, @ModelAttribute @Valid ChangeTimeForm form,
+                       @RequestParam int timerIds,
                        Errors errors){
         if(errors.hasErrors()){
             model.addAttribute("form", form);
@@ -131,9 +132,10 @@ public class UserController {
         ChangeTimeForm form = new ChangeTimeForm(timerDao.findAll(), user);
         model.addAttribute("title", user.getName());
         model.addAttribute("timeToPlay", user.getTimer());
-        model.addAttribute("timers", timerDao.findAll());
-        model.addAttribute("users", userDao.findAll());
-
+//        model.addAttribute("timers", timerDao.findAll());
+        model.addAttribute("timers", user.getTimer());
+//        model.addAttribute("users", userDao.findAll());
+        model.addAttribute("user", user.getId());
         model.addAttribute("form", form);
         return "user/view";
     }

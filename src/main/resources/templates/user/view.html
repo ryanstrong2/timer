@@ -8,6 +8,10 @@
 <!--<form method="post" style="max-width:600px;" th:objects="${form}" action="/menu/view">-->
     <!--<div class="form-group">-->
         <!--<select name ="timerId">-->
+
+<ul >
+    <li th:each="timer: ${timers}" th:text="${timer.number)"></li>
+</ul>
            <table style="max-width:600px;" th:objects="${form}" action="/menu/view">
             <tr th:each="timer: *{timers}"
                     th:text="${timer.number}"
