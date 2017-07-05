@@ -1,11 +1,9 @@
 package org.ryanstrong.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Created by ryanstrong on 6/12/17.
@@ -24,6 +22,9 @@ public class User {
     @ManyToOne
     private Timer timer;
 
+    @ManyToMany
+    private List<Timer> timers;
+
     public User(String name, Integer timeToPlay){
         this.name = name;
         this.timeToPlay = timeToPlay;
@@ -41,6 +42,9 @@ public class User {
         this.timeToPlay = timeToPlay;
     }
 
+    public void addTime(Timer unit){
+        timers.add(unit);
+    }
     public int getId()
     {
         return id;

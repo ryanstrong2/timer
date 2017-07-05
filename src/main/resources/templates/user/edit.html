@@ -16,16 +16,16 @@
 
 <form method="post" style="max-width:600px;" th:objects="${form}" action="/menu/edit">
     <div class="form-group">
-        <label th:for="timerId">time</label>
+        <label th:for="timerId">Time</label>
         <p th:each="timer: *{timers}"
         th:text="${timer.number}"/>
         <!--<input th:field="${timer.id}"/>-->
         <!--<span th:errors="*{timerId}" class="error"></span>-->
 
-        <select name ="timerId">
+        <!--<select name ="timerId">-->
+        <select number ="timerId">
             <option th:each="timer: *{timers}"
                     th:text="${timer.number}"
-
                     th:value="${timer.id}">
                 <span th:errors="*{timerId}" class="error"></span>
             </option>
@@ -39,6 +39,6 @@
     <!--<li th:each="timer : ${timers}" th:text="${timer.number}"></li>-->
 <!--</ul>-->
 <!--<p th:unless="${timers==null}">users have not been entered</p>-->
-
+<nav th:replace="fragments:: footer"></nav>
 </body>
 </html>

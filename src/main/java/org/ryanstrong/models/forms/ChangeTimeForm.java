@@ -29,6 +29,8 @@ public class ChangeTimeForm {
         return user;
     }
 
+    public void setUser(User user){ this.user=user;}
+
     public int getUserId() {
         return userId;
     }

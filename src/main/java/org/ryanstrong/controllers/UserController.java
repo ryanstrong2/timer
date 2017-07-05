@@ -83,20 +83,23 @@ public class UserController {
     }
     @RequestMapping(value="edit", method = RequestMethod.POST)
     public String edit(Model model, @ModelAttribute @Valid ChangeTimeForm form,
-                       @RequestParam int timerId, @RequestParam int userId,
+//                       @RequestParam int timerId, @RequestParam int userId,
             Errors errors){
         if(errors.hasErrors()){
             model.addAttribute("form", form);
-            return "user/edit/{userId}";
+            return "user/edit";
         }
         User theUser = userDao.findOne(form.getUserId());
-        ChangeTimeForm addForm = new ChangeTimeForm(timerDao.findAll(), theUser);
-
+//        ChangeTimeForm addForm = new ChangeTimeForm(timerDao.findAll(), theUser);
+//        ChangeTimeForm addForm = new ChangeTimeForm(timerDao.findAll(), form);
 
         Timer theTimer = timerDao.findOne(form.getTimerId());
+//        theUser.edit(theTimer);
         theUser.setTimer(theTimer);
+
         userDao.save(theUser);
-        return "user/edit/{userId}";
+//        userDao.save(form);
+        return "redirect:/user/view/" + theUser.getId();
     }
     @RequestMapping(value="remove-time/{userId}", method = RequestMethod.GET)
     public  String removeTime(Model model, @PathVariable int userId) {
@@ -117,7 +120,7 @@ public class UserController {
                        Errors errors){
         if(errors.hasErrors()){
             model.addAttribute("form", form);
-            return "user/view/{userId}";
+            return "user/view";
         }
 
         User theUser = userDao.findOne(form.getUserId());
