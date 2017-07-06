@@ -12,7 +12,7 @@
 <ul >
     <li th:each="timer: ${timers}" th:text="${timer.number)"></li>
 </ul>
-           <table style="max-width:600px;" th:objects="${form}" action="/menu/view">
+           <table style="max-width:600px;" th:object="${form}" action="/user/view">
             <tr th:each="timer: *{timers}"
                     th:text="${timer.number}"
                     th:value="${timerId}">
@@ -34,7 +34,7 @@
     <!--<li th:each="user:${users}" th:text="${user.name}"></li>-->
     <!--<li th:each="timer:${timers}" th:text="${timer.number}"></li>-->
 <!--</ul>-->
-<p th:if="${timers==null}">users have not been given time</p>
+<p th:if="${timer==null}">users have not been given time</p>
 
 <p th:each="user : ${users}">
     <a th:href ="'/user/edit/' + ${user.id}" th:text="${user.name } + '  Add'"> Add Time </a>  |

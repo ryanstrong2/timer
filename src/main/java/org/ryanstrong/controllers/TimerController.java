@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 //import java.util.ArrayList;
 
@@ -32,8 +34,15 @@ public class TimerController {
     @Autowired
     private UserDao userDao;
 
-    @ManyToOne
-    private User user;
+//    @ManyToOne    was User user
+//    private Timer timer;
+
+    @OneToMany
+    @org.ryanstrong.models.JoinColumn(name="User_id")
+    private List<User> users = new ArrayList<>();
+
+//    @ManyToOne
+//    private List<User> users;
 
         //Request path: /timer
     @RequestMapping(value="")

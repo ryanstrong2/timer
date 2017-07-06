@@ -28,9 +28,18 @@ public class UserController {
     @Autowired// creates class and object
     private UserDao userDao;
 
+
+
     @OneToMany
     @org.ryanstrong.models.JoinColumn(name="User_id")
     private List<Timer> timers = new ArrayList<>();
+
+//    @ManyToOne
+//    private List<User> users;
+
+//    @OneToMany
+//    @org.ryanstrong.models.JoinColumn(name="User_id")
+//    private List<User> users = new ArrayList<>();
 
     @RequestMapping(value="")
     public String index(Model model){
@@ -72,7 +81,7 @@ public class UserController {
     public  String edit(Model model, @PathVariable int userId){
         User user = userDao.findOne(userId);
         ChangeTimeForm form = new ChangeTimeForm(timerDao.findAll(), user);
-        model.addAttribute("title", user.getName());
+        model.addAttribute("title", "Increase timer for: " + user.getName());
 //        model.addAttribute("timeToPlay", user.getTimer());
         model.addAttribute("timer", user.getName());
         model.addAttribute("form", form);

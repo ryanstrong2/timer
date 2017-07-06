@@ -24,6 +24,7 @@ public class User {
 
     @ManyToMany
     private List<Timer> timers;
+    //todo add to timer.java
 
     public User(String name, Integer timeToPlay){
         this.name = name;
