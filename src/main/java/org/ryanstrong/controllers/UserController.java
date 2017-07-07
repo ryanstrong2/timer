@@ -59,7 +59,7 @@ public class UserController {
             model.addAttribute("title", "New User");
             return "user/add";
         }
-//    todo    userDao.add(newUser);
+//      userDao.add(newUser);
         userDao.save(newUser);
         return "redirect:view/" + newUser.getId();
 //        return "user";
@@ -98,14 +98,12 @@ public class UserController {
             model.addAttribute("form", form);
             return "user/edit";
         }
+        Timer theTimer = timerDao.findOne(form.getTimerId());
         User theUser = userDao.findOne(form.getUserId());
 //        ChangeTimeForm addForm = new ChangeTimeForm(timerDao.findAll(), theUser);
 //        ChangeTimeForm addForm = new ChangeTimeForm(timerDao.findAll(), form);
-
-        Timer theTimer = timerDao.findOne(form.getTimerId());
 //        theUser.edit(theTimer);
-        theUser.setTimer(theTimer);
-
+        theUser.addTime(theTimer);
         userDao.save(theUser);
 //        userDao.save(form);
         return "redirect:/user/view/" + theUser.getId();

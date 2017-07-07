@@ -12,6 +12,7 @@ public class ChangeTimeForm {
     @NotNull
     private int userId;
 
+//    @NotNull
     private int timerId;
 
     private Iterable<Timer> timers;
