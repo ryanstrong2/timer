@@ -19,23 +19,45 @@ public class User {
 
     private Integer timeToPlay;
 
-    @ManyToOne
-    private Timer timer;
+//    @ManyToOne
+//    private Timer timer;
 
     @ManyToMany
     private List<Timer> timers;
 
+    public User() {
+    }
 
-    public User(String name, Integer timeToPlay){
+    public User(String name, Integer timeToPlay) {
         this.name = name;
         this.timeToPlay = timeToPlay;
     }
-    public User(){}
 
+    public void addTime(Timer unit) {
+        timers.add(unit);
+    }
+
+    public User(List<Timer> timers, String name) {
+       this.timers = timers;
+       this.name =name;
+    }
+
+    public int getId(){
+        return id;
+    }
+    public void setId(int id){
+        this.id=id;
+    }
     public String getName() {return name;}
 
     public void setName(String name) {this.name = name;}
 
+    public List<Timer> getTimers(){
+        return timers;
+    }
+    public void setTimers(List<Timer> timers){
+        this.timers = timers;
+    }
     public Integer getTimeToPlay() {
         return timeToPlay;
     }
@@ -43,21 +65,17 @@ public class User {
         this.timeToPlay = timeToPlay;
     }
 
-    public void addTime(Timer unit){
-        timers.add(unit);
-    }
-    public int getId()
-    {
-        return id;
-    }
-    public Timer getTimer(){ return timer;}
 
-    public void setTimer(Timer timer) {
-        this.timer = timer;
-    }
-    //    public void addMinute(Timer newUser){ timers.add(minute)}
-//    public User(List<Timer> timers, String name){
-//        this.timers=timers;
-//        this.name = name;
+
+
+//    public Timer getTimer(){ return timers;}
+//
+//    public void setTimer(Timer timer) {
+//        this.timer = timer;
 //    }
+    //    public void addMinute(Timer newUser){ timers.add(minute)}
+
+
+
+
 }

@@ -113,7 +113,7 @@ public class UserController {
         User user = userDao.findOne(userId);
         ChangeTimeForm form = new ChangeTimeForm(timerDao.findAll(), user);
         model.addAttribute("title", user.getName());
-        model.addAttribute("timeToPlay", user.getTimer());
+//        model.addAttribute("timeToPlay", user.getTimers());
         model.addAttribute("timers", timerDao.findAll());
         model.addAttribute("users", userDao.findAll());
 
@@ -123,16 +123,19 @@ public class UserController {
     @RequestMapping(value="remove-time", method = RequestMethod.POST)
     public String processRemoveTime(
             Model model, @ModelAttribute @Valid ChangeTimeForm form,
-                       @RequestParam int timerIds,
+                       @RequestParam int [] timerIds,
                        Errors errors){
         if(errors.hasErrors()){
             model.addAttribute("form", form);
             return "user/view";
         }
+        for (int timerId:timerIds){
+            userDao.delete(timerId);}
 
         User theUser = userDao.findOne(form.getUserId());
         Timer theTimer = timerDao.findOne(form.getTimerId());
-        theUser.setTimer(theTimer);
+//        theUser.setTimers(theTimer);
+//        userDao.delete(theTimer);
         userDao.save(theUser);
         return "user/view/" + theUser.getId();
     }
@@ -141,9 +144,9 @@ public class UserController {
         User user = userDao.findOne(userId);
         ChangeTimeForm form = new ChangeTimeForm(timerDao.findAll(), user);
         model.addAttribute("title", user.getName());
-        model.addAttribute("timeToPlay", user.getTimer());
+        model.addAttribute("timeToPlay", user.getTimers());
 //        model.addAttribute("timers", timerDao.findAll());
-        model.addAttribute("timers", user.getTimer());
+        model.addAttribute("timers", user.getTimers());
         model.addAttribute("users", userDao.findAll());
         model.addAttribute("user", user.getId());
         model.addAttribute("form", form);
@@ -160,7 +163,7 @@ public class UserController {
 
         User theUser = userDao.findOne(form.getUserId());
         Timer theTimer = timerDao.findOne(form.getTimerId());
-        theUser.setTimer(theTimer);
+//        theUser.setTimers(theTimer);
         userDao.save(theUser);
         return "user/view/" + theUser.getId();
     }
