@@ -28,10 +28,10 @@ public class User {
     public User() {
     }
 
-    public User(String name, Integer timeToPlay) {
-        this.name = name;
-        this.timeToPlay = timeToPlay;
-    }
+//    public User(String name, Integer timeToPlay) {
+//        this.name = name;
+//        this.timeToPlay = timeToPlay;
+//    }
 
     public void addTime(Timer unit) {
         timers.add(unit);

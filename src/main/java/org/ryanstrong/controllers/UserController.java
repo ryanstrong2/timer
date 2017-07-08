@@ -22,13 +22,12 @@ import java.util.List;
 @Controller
 @RequestMapping("user")
 public class UserController {
-    @Autowired
-    private TimerDao timerDao;
 
     @Autowired// creates class and object
     private UserDao userDao;
 
-
+    @Autowired
+    private TimerDao timerDao;
 
     @OneToMany
     @org.ryanstrong.models.JoinColumn(name="User_id")
@@ -77,21 +76,24 @@ public class UserController {
         }
         return "redirect:";
     }
+
     @RequestMapping(value="edit/{userId}", method = RequestMethod.GET)
-    public  String edit(Model model, @PathVariable int userId){
+    public  String addTime(Model model, @PathVariable int userId){
         User user = userDao.findOne(userId);
         ChangeTimeForm form = new ChangeTimeForm(timerDao.findAll(), user);
-        model.addAttribute("title", "Increase timer for: " + user.getName());
+        model.addAttribute("title", "Increase time for: " + user.getName());
 //        model.addAttribute("timeToPlay", user.getTimer());
-        model.addAttribute("timer", user.getName());
+//        model.addAttribute("timer", user.getName());
+//        model.addAttribute("timer", user.getTimers());
+
         model.addAttribute("form", form);
-        model.addAttribute("users", userDao.findAll());
-        model.addAttribute("timers", timerDao.findAll());
+//        model.addAttribute("users", userDao.findAll());
+//        model.addAttribute("timers", timerDao.findAll());
 
         return "user/edit";
     }
     @RequestMapping(value="edit", method = RequestMethod.POST)
-    public String edit(Model model, @ModelAttribute @Valid ChangeTimeForm form,
+    public String addTime(Model model, @ModelAttribute @Valid ChangeTimeForm form,
 //                       @RequestParam int timerId,
  @RequestParam int userId,
             Errors errors){
@@ -107,8 +109,8 @@ public class UserController {
         theUser.addTime(theTimer);
         userDao.save(theUser);
 //        userDao.save(form);
-//        return "redirect:/user/view/" + theUser.getId();
-        return "user/edit";
+        return "redirect:/user/view/" + theUser.getId();
+//        return "user/edit";
     }
     @RequestMapping(value="remove-time/{userId}", method = RequestMethod.GET)
     public  String removeTime(Model model, @PathVariable int userId) {
@@ -145,14 +147,14 @@ public class UserController {
     public  String view(Model model, @PathVariable int userId){
 
         User user = userDao.findOne(userId);
-        ChangeTimeForm form = new ChangeTimeForm(timerDao.findAll(), user);
+//        ChangeTimeForm form = new ChangeTimeForm(timerDao.findAll(), user);
         model.addAttribute("title", user.getName());
-        model.addAttribute("timeToPlay", user.getTimers());
+//        model.addAttribute("timeToPlay", user.getTimers());
 //        model.addAttribute("timers", timerDao.findAll());
         model.addAttribute("timers", user.getTimers());
         model.addAttribute("users", userDao.findAll());
         model.addAttribute("user", user.getId());
-        model.addAttribute("form", form);
+//        model.addAttribute("form", form);
 
         return "user/view";
     }

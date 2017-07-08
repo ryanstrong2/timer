@@ -16,14 +16,15 @@
 <label th:for="timerId">Time</label>
 <p th:each="timer: *{timers}"
    th:text="${timer.number}"/>
-<form method="post" style="max-width:600px;" th:object="${form}" action="/user/edit">
+<!--style="max-width:600px;"-->
+<form method="post" th:object="${form}" action="/user/edit">
     <div class="form-group">
 
         <!--<input th:field="${timer.id}"/>-->
         <!--<span th:errors="*{timerId}" class="error"></span>-->
         <select name ="timerId">
         <!--<select number ="timerId">-->
-            <option th:each="timer: *{timers}"
+            <option th:each="timer : *{timers}"
                     th:text="${timer.number}"
                     th:value="${timer.id}">
                 <span th:errors="*{timerId}" class="error"></span>
