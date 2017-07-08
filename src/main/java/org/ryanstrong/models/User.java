@@ -65,11 +65,8 @@ public class User {
         this.timeToPlay = timeToPlay;
     }
 
-
-
-
 //    public Timer getTimer(){ return timers;}
-//
+
 //    public void setTimer(Timer timer) {
 //        this.timer = timer;
 //    }
