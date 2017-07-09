@@ -37,6 +37,10 @@ public class User {
         timers.add(unit);
     }
 
+    public void removeTime(Timer unit){
+        timers.remove(unit);
+    }
+
     public User(List<Timer> timers, String name) {
        this.timers = timers;
        this.name =name;

@@ -8,12 +8,13 @@
 <h1 th:text="${title}">Title</h1>
 <nav th:replace="fragments:: navigation"></nav>
 
-<form method="post" style="max-width:600px;">
+<form method="post" style="max-width:600px;" th:objet="${form}" action="/user/remove-time">
     <div th:each="timer:${timers}" class="checkbox">
         <input type="checkbox" name="timerIds" th:value="${timer.id}" th:id="${timer.id}"/>
         <label th:for="${timer.id}" th:text="${timer.number}"></label>
         <br/>
     </div>
+    <input type="hidden" name="userId" th:value="*{user.id}"/>
     <!--<div class="form-group">-->
     <!--<label form="number-field">Amount</label>-->
     <!--<input class="form-control" id="timerId" type="int" name="timeAmount"/>-->

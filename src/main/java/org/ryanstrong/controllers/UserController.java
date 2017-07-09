@@ -6,6 +6,8 @@ import org.ryanstrong.models.data.TimerDao;
 import org.ryanstrong.models.data.UserDao;
 import org.ryanstrong.models.forms.ChangeTimeForm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -84,7 +86,7 @@ public class UserController {
         model.addAttribute("title", "Increase time for: " + user.getName());
 //        model.addAttribute("timeToPlay", user.getTimer());
 //        model.addAttribute("timer", user.getName());
-//        model.addAttribute("timer", user.getTimers());
+        model.addAttribute("timers", user.getTimers());
 
         model.addAttribute("form", form);
 //        model.addAttribute("users", userDao.findAll());
@@ -118,30 +120,49 @@ public class UserController {
         ChangeTimeForm form = new ChangeTimeForm(timerDao.findAll(), user);
         model.addAttribute("title", user.getName());
 //        model.addAttribute("timeToPlay", user.getTimers());
-        model.addAttribute("timers", timerDao.findAll());
+//        model.addAttribute("timers", timerDao.findAll());
+        model.addAttribute("timers", user.getTimers());
         model.addAttribute("users", userDao.findAll());
 
         model.addAttribute("form", form);
         return "user/remove-time";
     }
-    @RequestMapping(value="remove-time", method = RequestMethod.POST)
-    public String processRemoveTime(
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public class NotFoundException extends RuntimeException {}
+
+//    @RequestMapping(value="remove-time", method = RequestMethod.POST)
+    @DeleteMapping("/remove-time/{timerId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteTimer(@PathVariable int timerId){
+        try{
+            userDao.delete(timerId);
+        } catch (EmptyResultDataAccessException ex){
+            throw new NotFoundException();
+
+        }
+    }
+    @RequestMapping(value="remove-time/{userId}", method= RequestMethod.DELETE)
+    public String removeTime(
             Model model, @ModelAttribute @Valid ChangeTimeForm form,
                        @RequestParam int [] timerIds,
+//            @RequestParam int userId,
+                        @PathVariable int userId,
                        Errors errors){
         if(errors.hasErrors()){
             model.addAttribute("form", form);
-            return "user/view";
+            return "user/remove-time";
         }
         for (int timerId:timerIds){
             userDao.delete(timerId);}
 
         User theUser = userDao.findOne(form.getUserId());
         Timer theTimer = timerDao.findOne(form.getTimerId());
-//        theUser.setTimers(theTimer);
+//        theUser.removeTime(theTimer);
 //        userDao.delete(theTimer);
+
         userDao.save(theUser);
-        return "user/view/" + theUser.getId();
+        return "redirect:/user/view/" + theUser.getId();
     }
     @RequestMapping(value="view/{userId}", method = RequestMethod.GET)
     public  String view(Model model, @PathVariable int userId){

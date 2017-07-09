@@ -14,9 +14,12 @@
         <!--<br/>-->
     <!--</div>-->
 <label th:for="timerId">Time</label>
-<p th:each="timer: *{timers}"
-   th:text="${timer.number}"/>
-<!--style="max-width:600px;"-->
+<!--<p th:each="timer: *{timers}"-->
+   <!--th:text="${timer.number}"/>-->
+<ul >
+    <li th:each="timer : ${timers}" th:text="${timer.number}">number</li>
+</ul>
+    <!--style="max-width:600px;"-->
 <form method="post" th:object="${form}" action="/user/edit">
     <div class="form-group">
 
