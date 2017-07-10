@@ -14,19 +14,21 @@
         <label th:for="${timer.id}" th:text="${timer.number}"></label>
         <br/>
     </div>
-    <input type="hidden" name="userId" th:value="*{user.id}"/>
-    <!--<div class="form-group">-->
-    <!--<label form="number-field">Amount</label>-->
-    <!--<input class="form-control" id="timerId" type="int" name="timeAmount"/>-->
-    <!--<label th:for="number">Name</label>-->
-    <!--<input class="form-control" th:field ="*{timerId}"/>-->
-    <!--id="timer.number" type="int" name="timeAmount"-->
-    <!--<span th:errors="*{timerId}" class="error"></span>-->
-    <!--</div>-->
-    <!--<input type="text" name="timeAmount"/>-->
+    <!--<input type="hidden" name="userId" th:value="*{user.id}"/>-->
+
     <input type="submit" value="Delete Time"/>
 </form>
 <nav th:replace="fragments:: footer"></nav>
 
 </body>
 </html>
+
+<!--<div class="form-group">-->
+<!--<label form="number-field">Amount</label>-->
+<!--<input class="form-control" id="timerId" type="int" name="timeAmount"/>-->
+<!--<label th:for="number">Name</label>-->
+<!--<input class="form-control" th:field ="*{timerId}"/>-->
+<!--id="timer.number" type="int" name="timeAmount"-->
+<!--<span th:errors="*{timerId}" class="error"></span>-->
+<!--</div>-->
+<!--<input type="text" name="timeAmount"/>-->

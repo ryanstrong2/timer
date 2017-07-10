@@ -12,7 +12,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
 
     @NotNull
     private String name;
@@ -33,7 +33,7 @@ public class User {
 //        this.timeToPlay = timeToPlay;
 //    }
 
-    public void addTime(Timer unit) {
+    public void addTime (Timer unit) {
         timers.add(unit);
     }
 
@@ -46,10 +46,10 @@ public class User {
        this.name =name;
     }
 
-    public int getId(){
+    public Integer getId(){
         return id;
     }
-    public void setId(int id){
+    public void setId(Integer id){
         this.id=id;
     }
     public String getName() {return name;}
