@@ -37,6 +37,9 @@ public class UserController {
 //    @ManyToOne
 //    private List<User> users;
 
+//    @ManyToOne
+//    private Timer timer;
+
 //    @OneToMany
 //    @org.ryanstrong.models.JoinColumn(name="User_id")
 //    private List<User> users = new ArrayList<>();
@@ -79,7 +82,7 @@ public class UserController {
     }
 
     @RequestMapping(value="edit/{userId}", method = RequestMethod.GET)
-    public  String addTime(Model model, @PathVariable Integer userId){
+    public  String addTime(Model model, @PathVariable int userId){
         User user = userDao.findOne(userId);
         ChangeTimeForm form = new ChangeTimeForm(timerDao.findAll(), user);
         model.addAttribute("title", "Increase time for: " + user.getName());
@@ -96,7 +99,7 @@ public class UserController {
     @RequestMapping(value="edit", method = RequestMethod.POST)
     public String addTime(Model model, @ModelAttribute @Valid ChangeTimeForm form,
 //                       @RequestParam int timerId,
- @RequestParam Integer userId,
+ @RequestParam int userId,
             Errors errors){
         if(errors.hasErrors()){
             model.addAttribute("form", form);
@@ -150,6 +153,14 @@ public class UserController {
         userDao.save(theUser);
         return "redirect:/user/view/" + form.getUserId();
     }
+
+    @RequestMapping(value="time/{userId}", method = RequestMethod.GET)
+    public  String time(Model model, @PathVariable Integer userId) {
+        User user = userDao.findOne(userId);
+        model.addAttribute("timeToPlay", user.getTimers());
+        return "user/time";
+    }
+
     @RequestMapping(value="view/{userId}", method = RequestMethod.GET)
     public  String view(Model model, @PathVariable Integer userId){
 

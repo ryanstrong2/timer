@@ -22,8 +22,15 @@ public class User {
 //    @ManyToOne
 //    private Timer timer;
 
+//    @OneToOne
+//    @JoinColumn(name="Timer_Id")
+//    private Timer timers;
+
     @ManyToMany
     private List<Timer> timers;
+
+//    @OneToMany
+//    private List<Timer> timers;
 
     public User() {
     }

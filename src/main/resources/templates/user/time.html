@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<h1 th:text="${title}">Strong</h1>
+<nav th:replace="fragments:: navigation"></nav>
+<nav th:replace="fragments:: footer"></nav>
+
+
+<form method="post" style="max-width:600px;" th:objet="${form}" action="/user/remove-time">
+    <div th:each="timer:${timers}" class="checkbox">
+        <input type="checkbox" name="timerIds" th:value="${timer.id}" th:id="${timer.id}"/>
+        <label th:for="${timer.id}" th:text="${timer.number}"></label>
+        <br/>
+    </div>
+    <!--<input type="hidden" name="userId" th:value="*{user.id}"/>-->
+
+    <input type="submit" value="Delete Time"/>
+</form>
+<ul>
+    <li th:each="user : ${users}">
+        <a th:href="'/user/view/' + ${user.id}" th:text="${user.name}"></a>
+    </li>
+</ul>
+
+<p><a href="/user/add">Add User</a>  |
+    <a href="/user/remove">Remover User</a>
+
+</p>
+</body>
+</html>
