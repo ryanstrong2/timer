@@ -35,10 +35,10 @@ public class User {
     public User() {
     }
 
-//    public User(String name, Integer timeToPlay) {
-//        this.name = name;
-//        this.timeToPlay = timeToPlay;
-//    }
+    public User(String name, Integer timeToPlay) {
+        this.name = name;
+        this.timeToPlay = timeToPlay;
+    }
 
     public void addTime (Timer unit) {
         timers.add(unit);
@@ -52,6 +52,7 @@ public class User {
        this.timers = timers;
        this.name =name;
     }
+
 
     public Integer getId(){
         return id;
