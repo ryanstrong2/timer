@@ -56,12 +56,12 @@ public class AlterTimeForm {
 
     }
 
-    public Integer getTimerToPlay() {
+    public Integer getTimeToPlay() {
         return timeToPlay;
     }
 
-    public void setTimerToPlay(Integer timerToPlay) {
-        this.timeToPlay = timerToPlay;
+    public void setTimeToPlay(Integer timeToPlay) {
+        this.timeToPlay = timeToPlay;
     }
 
     public AlterTimeForm( User user){

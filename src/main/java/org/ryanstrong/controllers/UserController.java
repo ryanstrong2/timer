@@ -4,6 +4,7 @@ import org.ryanstrong.models.Timer;
 import org.ryanstrong.models.User;
 import org.ryanstrong.models.data.TimerDao;
 import org.ryanstrong.models.data.UserDao;
+import org.ryanstrong.models.forms.AlterTimeForm;
 import org.ryanstrong.models.forms.ChangeTimeForm;
 import org.ryanstrong.models.forms.DeleteTimeForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,42 @@ public class UserController {
         return "redirect:view/" + newUser.getId();
 //        return "user";
     }
+    @RequestMapping(value = "alter/{userId}", method = RequestMethod.GET)
+    public String addTimeToPlay(Model model
+            , @PathVariable Integer userId
+            ){
+        User user = userDao.findOne(userId);
+
+//        AlterTimeForm form =new AlterTimeForm(userTimeToPlay, addition);
+        model.addAttribute("timer", user.getTimers());
+        model.addAttribute("title", user.getName());
+        model.addAttribute("timeToPlay", user.getTimeToPlay());
+        model.addAttribute("user", userId);
+        return "user/alter";
+    }
+    @RequestMapping(value="alter", method=RequestMethod.POST)
+    public String addTimeToPlay(Model model,  @ModelAttribute @Valid AlterTimeForm form, Errors errors,
+    @RequestParam Timer timer){
+        if (errors.hasErrors()) {
+            model.addAttribute("form", form);
+            return "user/alter/";
+        }
+            User user = userDao.findOne(form.getTimeToPlay());
+//            user.setTimeToPlay(user.timeToPlay);
+            return "redirect:/user/view/"+ user.getId();
+
+    }
+    @RequestMapping(value="play", method = RequestMethod.GET)
+    public String displayPlay(Model model){
+        model.addAttribute("users", userDao.findAll());
+        model.addAttribute("title", "Play Game");
+        return "user/play";
+    }
+    @RequestMapping(value="play", method=RequestMethod.POST)
+    public String processPlay(@RequestParam Integer[] timeToPlay){
+//        userDao.replace
+        return null;
+    }
     @RequestMapping(value="remove", method=RequestMethod.GET)
     public String displayRemoveUserForm(Model model){
         model.addAttribute("users", userDao.findAll());
@@ -82,7 +119,7 @@ public class UserController {
     }
 
     @RequestMapping(value="edit/{userId}", method = RequestMethod.GET)
-    public  String addTime(Model model, @PathVariable int userId){
+    public  String addTime(Model model, @PathVariable Integer userId){
         User user = userDao.findOne(userId);
         ChangeTimeForm form = new ChangeTimeForm(timerDao.findAll(), user);
         model.addAttribute("title", "Increase time for: " + user.getName());
@@ -131,7 +168,6 @@ public class UserController {
     }
 
     @RequestMapping(value="remove-time", method = RequestMethod.POST)
-
     public String removeTime(
             Model model, @ModelAttribute @Valid ChangeTimeForm form,
                        @RequestParam int [] timerIds,
@@ -155,10 +191,39 @@ public class UserController {
     }
 
     @RequestMapping(value="time/{userId}", method = RequestMethod.GET)
-    public  String time(Model model, @PathVariable Integer userId) {
+    public  String time(Model model, @PathVariable Integer userId
+            , @RequestParam (required=false, name="userTimeToPlay")Integer userTimeToPlay
+    ) {
         User user = userDao.findOne(userId);
-        model.addAttribute("timeToPlay", user.getTimers());
+        User timeToPlay = userDao.findOne(userTimeToPlay);
+        model.addAttribute("title",  user.getName());
+        model.addAttribute("timeToPlay", user.getTimeToPlay());
+        model.addAttribute("timers", user.getTimers());
+//        AlterTimeForm form = new AlterTimeForm(userDao.findOne(userId), timeToPlay);
+//        AlterTimeForm form = new AlterTimeForm(userTimeToPlay, timers, user);
+        AlterTimeForm form = new AlterTimeForm(userTimeToPlay, timers, user);
+
         return "user/time";
+    }
+
+    @RequestMapping(value="time", method=RequestMethod.POST)
+    public String time(
+            Model model, @ModelAttribute @Valid AlterTimeForm form,
+            @RequestParam int [] timerIds,
+            @RequestParam (required=false, name="userId") Integer userId,
+//                        @PathVariable Integer userId,
+            Errors errors){
+        if(errors.hasErrors()){
+            model.addAttribute("form", form);
+            return "user/time";
+        }
+        for (int timerId:timerIds){
+            timerDao.delete(timerId);}
+
+        User theUser = userDao.findOne(userId);
+        Timer theTimer = timerDao.findOne(form.getTimerId());
+        userDao.save(theUser);
+        return "redirect:/user/view/" + form.getUserId();
     }
 
     @RequestMapping(value="view/{userId}", method = RequestMethod.GET)
@@ -167,7 +232,7 @@ public class UserController {
         User user = userDao.findOne(userId);
 //        ChangeTimeForm form = new ChangeTimeForm(timerDao.findAll(), user);
         model.addAttribute("title", user.getName());
-//        model.addAttribute("timeToPlay", user.getTimers());
+        model.addAttribute("timeToPlay", user.getTimeToPlay());
 //        model.addAttribute("timers", timerDao.findAll());
         model.addAttribute("timers", user.getTimers());
         model.addAttribute("users", userDao.findAll());

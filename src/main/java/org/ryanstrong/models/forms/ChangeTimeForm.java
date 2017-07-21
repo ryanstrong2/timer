@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
  */
 public class ChangeTimeForm {
     @NotNull
-    private int userId;
+    private Integer userId;
 
 //    @NotNull
     private int timerId;
@@ -36,7 +36,7 @@ public class ChangeTimeForm {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -44,9 +44,9 @@ public class ChangeTimeForm {
         return timerId;
     }
 
-    public void setTimerId(int timerId) {
-        this.timerId = timerId;
-    }
+//    public void setTimerId(int timerId) {
+//        this.timerId = timerId;
+//    }
 
     public Iterable<Timer> getTimers() {
         return timers;

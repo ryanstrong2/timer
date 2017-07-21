@@ -44,6 +44,11 @@ public class User {
         timers.add(unit);
     }
 
+    public void play(Integer minutes){
+
+        timeToPlay = timeToPlay - minutes;
+    }
+
     public void removeTime(Timer unit){
         timers.remove(unit);
     }
@@ -76,6 +81,9 @@ public class User {
     public void setTimeToPlay(Integer timeToPlay) {
         this.timeToPlay = timeToPlay;
     }
+
+//    public void setTimeToPlay(Timer timer) {
+//    }
 
 //    public Timer getTimer(){ return timers;}
 
