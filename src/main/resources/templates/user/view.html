@@ -16,7 +16,7 @@
         <!--<select name ="timerId">-->
 
 <ul >
-    <li th:each="timer : ${timers}" th:text="${timer.number}">number</li>
+    <li th:text="${timeToPlay}">number</li>
     <!--<li th:each="timer : ${timers}" th:text="${user.timers}">user timer</li>-->
 </ul>
            <!--<table style="max-width:600px;" th:object="${form}" action="/user/view">-->
@@ -31,7 +31,7 @@
                 <!--</tr>-->
             <!--</td>-->
            <!--</table>-->
-<p th:text="${timeToPlay}"/>
+<p th:text="${timeToPlay}"/><!--not displaying-->
 <!--<p th:text="${timers}"/>-->
         <!--</select>-->
     <!--</div>-->

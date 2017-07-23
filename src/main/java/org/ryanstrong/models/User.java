@@ -17,10 +17,10 @@ public class User {
     @NotNull
     private String name;
 
-    private Integer timeToPlay;
+    private Integer timeToPlay = 0;
 
-//    @ManyToOne
-//    private Timer timer;
+    @ManyToOne
+    private Timer timer;
 
 //    @OneToOne
 //    @JoinColumn(name="Timer_Id")
@@ -44,9 +44,9 @@ public class User {
         timers.add(unit);
     }
 
-    public void play(Integer minutes){
+    public void timeToPlay(Integer timers){
 
-        timeToPlay = timeToPlay - minutes;
+        timeToPlay = timeToPlay + timer.getNumber();
     }
 
     public void removeTime(Timer unit){
@@ -69,11 +69,9 @@ public class User {
 
     public void setName(String name) {this.name = name;}
 
-    public List<Timer> getTimers(){
-        return timers;
+    public List<Timer> getTimers(){return timers;
     }
-    public void setTimers(List<Timer> timers){
-        this.timers = timers;
+    public void setTimers(List<Timer> timers) {this.timers = timers;
     }
     public Integer getTimeToPlay() {
         return timeToPlay;
@@ -85,11 +83,11 @@ public class User {
 //    public void setTimeToPlay(Timer timer) {
 //    }
 
-//    public Timer getTimer(){ return timers;}
+    public Timer getTimer(){ return timer;}
 
-//    public void setTimer(Timer timer) {
-//        this.timer = timer;
-//    }
+    public void setTimer(Timer timer) {
+        this.timer = timer;
+    }
     //    public void addMinute(Timer newUser){ timers.add(minute)}
 
 

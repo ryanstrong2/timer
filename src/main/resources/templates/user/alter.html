@@ -5,18 +5,25 @@
 <h2 th:text="${title}">Strong Title</h2>
 <nav th:replace="fragments:: navigation"></nav>
 <nav th:replace="fragments:: footer"></nav>
-
-<!--<p th:text="${user}"></p>-->
-<form method="post" style="max-width:200px;" th:object="${user}">
+<label >Time Change</label>
+<p th:text="${user}"></p>
+<form method="POST" style="max-width:200px;" th:object="${form}" action="/user/alter">
     <div class="form-group">
-        <label th:for="timeToPlay">Time To Play</label>
-        <input class="form-control" th:field="*{timer.number}"/>
+        <!--<label th:for="timeToPlay">Time To Play</label>-->
+        <!--<input class="form-control" th:field="*{timeToPlay}"/>-->
+        <!--<input type="number" name="timeToPlay" th:value="*{timers}"/>-->
+        <select name="timerId">
+            <option th:each="timer : *{timers}"
+                    th:text="${timer.number}"
+                    th:value="${timer.id}">
+        <span th:errors="*{timerId}" class="error"></span>
 
-        <span th:errors="*{timer}" class="error"></span>
+            </option>
+        </select>
     </div>
     <input type="hidden" name="timeToPlay" th:value="*{user.timeToPlay}"/>
     <input type="hidden" name="userId" th:value="*{user.id}"/>
-    <input type="submit" value="Add time"/>
+    <input type="submit" value="Update time"/>
 </form>
 </body>
 </html>

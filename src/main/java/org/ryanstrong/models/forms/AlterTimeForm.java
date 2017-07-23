@@ -21,6 +21,7 @@ public class AlterTimeForm {
     private Iterable<Timer> timers;
 //    private Integer total;
 
+    public AlterTimeForm(){}
     public void timer (Integer timer)
     {
         timeToPlay = timeToPlay + timer;

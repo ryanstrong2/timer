@@ -36,6 +36,9 @@ public class UserController {
     private List<Timer> timers = new ArrayList<>();
 
 //    @ManyToOne
+//    private Timer timers;
+
+//    @ManyToOne
 //    private List<User> users;
 
 //    @ManyToOne
@@ -58,38 +61,47 @@ public class UserController {
         return "user/add";
     }
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String add(Model model, @ModelAttribute @Valid User newUser, Errors errors){
+    public String add(Model model, @ModelAttribute @Valid User newUser,
+                      @RequestParam int timeToPlay,
+                      Errors errors){
         if(errors.hasErrors()){
             model.addAttribute("title", "New User");
             return "user/add";
         }
-//      userDao.add(newUser);
+//        User timeToPlay= timerDao.findOne(timeToPlay);
+//      userDao.save(newUser);
+//        newUser.setTimeToPlay(usertimeToPlay());
         userDao.save(newUser);
         return "redirect:view/" + newUser.getId();
 //        return "user";
     }
     @RequestMapping(value = "alter/{userId}", method = RequestMethod.GET)
-    public String addTimeToPlay(Model model
-            , @PathVariable Integer userId
-            ){
+    public String addTimeToPlay(Model model, @PathVariable Integer userId){
         User user = userDao.findOne(userId);
+        AlterTimeForm form = new AlterTimeForm(user.getTimeToPlay() ,timerDao.findAll(), user);
 
 //        AlterTimeForm form =new AlterTimeForm(userTimeToPlay, addition);
-        model.addAttribute("timer", user.getTimers());
+        model.addAttribute("timers", user.getTimers());
         model.addAttribute("title", user.getName());
         model.addAttribute("timeToPlay", user.getTimeToPlay());
         model.addAttribute("user", userId);
+        model.addAttribute("form", form);
         return "user/alter";
     }
     @RequestMapping(value="alter", method=RequestMethod.POST)
-    public String addTimeToPlay(Model model,  @ModelAttribute @Valid AlterTimeForm form, Errors errors,
-    @RequestParam Timer timer){
+    public String addTimeToPlay(Model model,  @ModelAttribute @Valid AlterTimeForm form, Errors errors
+
+    ){
         if (errors.hasErrors()) {
             model.addAttribute("form", form);
             return "user/alter/";
         }
+
             User user = userDao.findOne(form.getTimeToPlay());
-//            user.setTimeToPlay(user.timeToPlay);
+            user.setTimeToPlay(user.getTimeToPlay());
+            User timeToPlay;
+//            timeToPlay = timeToPlay + timers;
+            userDao.save(user);
             return "redirect:/user/view/"+ user.getId();
 
     }
@@ -136,14 +148,15 @@ public class UserController {
     @RequestMapping(value="edit", method = RequestMethod.POST)
     public String addTime(Model model, @ModelAttribute @Valid ChangeTimeForm form,
 //                       @RequestParam int timerId,
- @RequestParam int userId,
+// @RequestParam int userId,
             Errors errors){
         if(errors.hasErrors()){
             model.addAttribute("form", form);
             return "user/edit";
         }
-        Timer theTimer = timerDao.findOne(form.getTimerId());
         User theUser = userDao.findOne(form.getUserId());
+        Timer theTimer = timerDao.findOne(form.getTimerId());
+
 //        ChangeTimeForm addForm = new ChangeTimeForm(timerDao.findAll(), theUser);
 //        ChangeTimeForm addForm = new ChangeTimeForm(timerDao.findAll(), form);
 //        theUser.edit(theTimer);
