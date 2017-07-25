@@ -76,9 +76,14 @@ public class UserController {
 //        return "user";
     }
     @RequestMapping(value = "alter/{userId}", method = RequestMethod.GET)
-    public String addTimeToPlay(Model model, @PathVariable Integer userId){
+    public String addTimeToPlay(Model model, @PathVariable Integer userId
+    , Integer timerId
+    ){
         User user = userDao.findOne(userId);
-        AlterTimeForm form = new AlterTimeForm(user.getTimeToPlay() ,timerDao.findAll(), user);
+        AlterTimeForm form = new AlterTimeForm(
+//                user.getTimeToPlay() ,
+//                timeToPlay,
+                timerDao.findAll(), user);
 
 //        AlterTimeForm form =new AlterTimeForm(userTimeToPlay, addition);
         model.addAttribute("timers", user.getTimers());
@@ -97,12 +102,13 @@ public class UserController {
             return "user/alter/";
         }
 
-            User user = userDao.findOne(form.getTimeToPlay());
-            user.setTimeToPlay(user.getTimeToPlay());
-            User timeToPlay;
+            User theUser = userDao.findOne(form.getTimeToPlay());
+            Timer theTimer=timerDao.findOne(form.getTimerId());
+//            user.setTimeToPlay(user.getTimeToPlay());
+//            User timeToPlay;
 //            timeToPlay = timeToPlay + timers;
-            userDao.save(user);
-            return "redirect:/user/view/"+ user.getId();
+            userDao.save(theUser);
+            return "redirect:/user/view/"+ theUser.getId();
 
     }
     @RequestMapping(value="play", method = RequestMethod.GET)
@@ -138,7 +144,7 @@ public class UserController {
 //        model.addAttribute("timeToPlay", user.getTimer());
 //        model.addAttribute("timer", user.getName());
         model.addAttribute("timers", user.getTimers());
-
+        model.addAttribute("label", user.getTimeToPlay());
         model.addAttribute("form", form);
 //        model.addAttribute("users", userDao.findAll());
 //        model.addAttribute("timers", timerDao.findAll());
@@ -214,7 +220,9 @@ public class UserController {
         model.addAttribute("timers", user.getTimers());
 //        AlterTimeForm form = new AlterTimeForm(userDao.findOne(userId), timeToPlay);
 //        AlterTimeForm form = new AlterTimeForm(userTimeToPlay, timers, user);
-        AlterTimeForm form = new AlterTimeForm(userTimeToPlay, timers, user);
+        AlterTimeForm form = new AlterTimeForm(
+//                userTimeToPlay,
+                timers, user);
 
         return "user/time";
     }

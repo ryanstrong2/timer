@@ -46,7 +46,7 @@ public class User {
 
     public void timeToPlay(Integer timers){
 
-        timeToPlay = timeToPlay + timer.getNumber();
+        timeToPlay = timeToPlay + timer.getId();
     }
 
     public void removeTime(Timer unit){

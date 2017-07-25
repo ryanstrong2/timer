@@ -19,7 +19,7 @@ public class Timer {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     private int number;
 //    private static int nextId=1;
 
@@ -38,7 +38,7 @@ public class Timer {
         this.number = number;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

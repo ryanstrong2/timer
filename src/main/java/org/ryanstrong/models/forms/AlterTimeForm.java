@@ -26,8 +26,10 @@ public class AlterTimeForm {
     {
         timeToPlay = timeToPlay + timer;
     }
-    public AlterTimeForm(Integer timeToPlay, Iterable<Timer> timers, User user){
-        this.timeToPlay = timeToPlay;
+    public AlterTimeForm(
+//            Integer timeToPlay,
+            Iterable<Timer> timers, User user){
+//        this.timeToPlay = timeToPlay;
         this.timers = timers;
         this.user =user;
     }
