@@ -18,6 +18,8 @@ public class AlterTimeForm {
 
     private int timerId;
 
+    private Timer timerNumber;
+
     private Iterable<Timer> timers;
 //    private Integer total;
 
@@ -27,9 +29,9 @@ public class AlterTimeForm {
         timeToPlay = timeToPlay + timer;
     }
     public AlterTimeForm(
-//            Integer timeToPlay,
+            Integer timeToPlay,
             Iterable<Timer> timers, User user){
-//        this.timeToPlay = timeToPlay;
+        this.timeToPlay = timeToPlay;
         this.timers = timers;
         this.user =user;
     }
@@ -40,6 +42,12 @@ public class AlterTimeForm {
 
     public int getTimerId() {
         return timerId;
+    }
+
+    public int getTimerNumber() {return timerNumber();}
+
+    private int timerNumber() {
+        return 0;
     }
 
 //    public void setTimerId(int timerId) {

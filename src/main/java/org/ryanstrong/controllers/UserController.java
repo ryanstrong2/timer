@@ -77,18 +77,19 @@ public class UserController {
     }
     @RequestMapping(value = "alter/{userId}", method = RequestMethod.GET)
     public String addTimeToPlay(Model model, @PathVariable Integer userId
-    , Integer timerId
+    , Integer timerNumber
     ){
         User user = userDao.findOne(userId);
         AlterTimeForm form = new AlterTimeForm(
-//                user.getTimeToPlay() ,
-//                timeToPlay,
+                user.getTimeToPlay() ,
+//                Integer timeToPlay,
                 timerDao.findAll(), user);
 
 //        AlterTimeForm form =new AlterTimeForm(userTimeToPlay, addition);
-        model.addAttribute("timers", user.getTimers());
+//        model.addAttribute("timers", form.getNumber());
         model.addAttribute("title", user.getName());
         model.addAttribute("timeToPlay", user.getTimeToPlay());
+        model.addAttribute("timerId", timerNumber);
         model.addAttribute("user", userId);
         model.addAttribute("form", form);
         return "user/alter";
@@ -102,11 +103,12 @@ public class UserController {
             return "user/alter/";
         }
 
-            User theUser = userDao.findOne(form.getTimeToPlay());
-            Timer theTimer=timerDao.findOne(form.getTimerId());
+            User theUser = userDao.findOne(form.getUserId());
+            User timeToPlay = userDao.findOne(form.getTimeToPlay());
+            int theTimer=form.getTimerNumber();
 //            user.setTimeToPlay(user.getTimeToPlay());
-//            User timeToPlay;
-//            timeToPlay = timeToPlay + timers;
+            theUser.aTimeToPlay(theTimer);
+//            timeToPlay = timeToPlay + theTimer.getNumber();
             userDao.save(theUser);
             return "redirect:/user/view/"+ theUser.getId();
 
@@ -221,7 +223,7 @@ public class UserController {
 //        AlterTimeForm form = new AlterTimeForm(userDao.findOne(userId), timeToPlay);
 //        AlterTimeForm form = new AlterTimeForm(userTimeToPlay, timers, user);
         AlterTimeForm form = new AlterTimeForm(
-//                userTimeToPlay,
+                userTimeToPlay,
                 timers, user);
 
         return "user/time";
