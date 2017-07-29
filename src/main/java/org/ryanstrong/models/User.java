@@ -37,22 +37,18 @@ public class User {
 
     public User(String name, Integer timeToPlay) {
         this.name = name;
-        this.timeToPlay = timeToPlay;
-        timer = new Timer();
+        this.timeToPlay = timeToPlay + timer.getNumber();
+//        timer = new Timer();
     }
 
     public void addTime (Timer unit) {
         timers.add(unit);
     }
 
-    public void aTimeToPlay(int timers){
-
-//        Integer timeToPlay;
-        Integer timeToPlay = getTimeToPlay() + timers;
+    public void aTimeToPlay(Timer input){
+        Integer timeToPlay = getTimeToPlay() + input.getNumber();
 
     }
-
-//    public void addTimeT
     public void removeTime(Timer unit){
         timers.remove(unit);
     }

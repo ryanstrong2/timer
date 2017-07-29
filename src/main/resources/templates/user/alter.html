@@ -14,6 +14,7 @@
         <!--<input class="form-control" th:field="*{timeToPlay}"/>-->
         <!--<input type="number" name="timeToPlay" th:value="*{timers}"/>-->
         <select name="timerId">
+            <!--input is timer.number-->
             <option th:each="timer : *{timers}"
                     th:text="${timer.number}"
                     th:value="${timer.number}">
