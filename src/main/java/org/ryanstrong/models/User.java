@@ -53,10 +53,10 @@ public class User {
         timers.remove(unit);
     }
 
-    public User(List<Timer> timers, String name) {
-       this.timers = timers;
-       this.name =name;
-    }
+//    public User(List<Timer> timers, String name) {
+//       this.timers = timers;
+//       this.name =name;
+//    }
 
 
     public Integer getId(){
