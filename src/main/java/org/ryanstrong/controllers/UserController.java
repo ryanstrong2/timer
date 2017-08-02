@@ -83,7 +83,7 @@ public class UserController {
         AlterTimeForm form = new AlterTimeForm(
                 user.getTimeToPlay() ,
                 timerDao.findAll()
-//                , timer.getNumber()
+//                , timerDao.findOne()
                 , user
         );
 //        AlterTimeForm form =new AlterTimeForm(userTimeToPlay, addition);
@@ -98,7 +98,7 @@ public class UserController {
     @RequestMapping(value="alter", method=RequestMethod.POST)
     public String addTimeToPlay(Model model,  @ModelAttribute @Valid AlterTimeForm form, Errors errors
             ,@RequestParam int timeToPlay
-            , @RequestParam int number
+//            , @RequestParam int number
 //            , @RequestParam int timerId
 
     ){
@@ -109,16 +109,17 @@ public class UserController {
             User theUser = userDao.findOne(form.getUserId());
 //            User timeToPlay = userDao.findOne(form.getTimeToPlay());
             Integer theNumber=(form.getTimeToPlay());
-
+            Integer theTimerId = form.getTimerId();
+            Integer test = theNumber + theTimerId;
             Timer theTimer=timerDao.findOne(form.getTimerId());
 //            user.setTimeToPlay(user.getTimeToPlay());
 //            theUser.aTimeToPlay(form.getTimerNumber());
 //            theUser.aTimeToPlay(theTimer);
 //            timeToPlay = timeToPlay + theTimer.getNumber();
-            theUser.setTimeToPlay(theTimer.getNumber());
+            theUser.setTimeToPlay(test);
             userDao.save(theUser);
             return "redirect:/user/view/"+ theUser.getId();
-
+//            Integer test = form.getTimeToPlay()+form.getTimerId();
     }
     @RequestMapping(value="play", method = RequestMethod.GET)
     public String displayPlay(Model model){
@@ -144,7 +145,7 @@ public class UserController {
         }
         return "redirect:";
     }
-
+//todo make a report for week
     @RequestMapping(value="edit/{userId}", method = RequestMethod.GET)
     public  String addTime(Model model, @PathVariable Integer userId){
         User user = userDao.findOne(userId);
