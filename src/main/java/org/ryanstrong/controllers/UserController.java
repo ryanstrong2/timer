@@ -74,21 +74,23 @@ public class UserController {
     }
     @RequestMapping(value = "alter/{userId}", method = RequestMethod.GET)
     public String addTimeToPlay(Model model, @PathVariable Integer userId
-    , Integer timerId
+//    ,  Integer number
+//                                , Integer timerId
     ){
         User user = userDao.findOne(userId);
-        Timer timer = timerDao.findOne(timerId);
+//        Timer timer = timerDao.findOne(timerId);
+//        Timer timer = (Timer) timerDao.findAll(); cast to org.ryanstrong.models.Timer cannot be done
         AlterTimeForm form = new AlterTimeForm(
                 user.getTimeToPlay() ,
-                timerDao.findAll(),
-                timer.getNumber()
+                timerDao.findAll()
+//                , timer.getNumber()
                 , user
         );
 //        AlterTimeForm form =new AlterTimeForm(userTimeToPlay, addition);
 //        model.addAttribute("timers", form.getNumber());
         model.addAttribute("title", user.getName());
         model.addAttribute("timeToPlay", user.getTimeToPlay());
-        model.addAttribute("timerId", timerId);
+        model.addAttribute("timerId", timers);
         model.addAttribute("userId", userId);
         model.addAttribute("form", form);
         return "user/alter";
@@ -96,6 +98,8 @@ public class UserController {
     @RequestMapping(value="alter", method=RequestMethod.POST)
     public String addTimeToPlay(Model model,  @ModelAttribute @Valid AlterTimeForm form, Errors errors
             ,@RequestParam int timeToPlay
+            , @RequestParam int number
+//            , @RequestParam int timerId
 
     ){
         if (errors.hasErrors()) {
@@ -171,7 +175,7 @@ public class UserController {
 //        ChangeTimeForm addForm = new ChangeTimeForm(timerDao.findAll(), theUser);
 //        ChangeTimeForm addForm = new ChangeTimeForm(timerDao.findAll(), form);
 //        theUser.edit(theTimer);
-        theUser.addTime(theTimer);
+//        theUser.addTime(theTimer);
         userDao.save(theUser);
 //        userDao.save(form);
         return "redirect:/user/view/" + theUser.getId();
