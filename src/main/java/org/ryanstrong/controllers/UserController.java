@@ -73,21 +73,12 @@ public class UserController {
     }
     @RequestMapping(value = "alter/{userId}", method = RequestMethod.GET)
     public String addTimeToPlay(Model model, @PathVariable Integer userId
-//    ,  Integer number
-//                                , Integer timerId
     ){
         User user = userDao.findOne(userId);
-//        Timer timer = timerDao.findOne(timerId);
-//        Timer timer = (Timer) timerDao.findAll(); cast to org.ryanstrong.models.Timer cannot be done
         AlterTimeForm form = new AlterTimeForm(
-                user.getTimeToPlay() ,
-                timerDao.findAll()
-//                , timerDao.findOne()
-                , user
+                user.getTimeToPlay() , timerDao.findAll(), user
         );
-//        AlterTimeForm form =new AlterTimeForm(userTimeToPlay, addition);
-//        model.addAttribute("timers", form.getNumber());
-        model.addAttribute("title", user.getName());
+        model.addAttribute("title", "Add time for:  "+ user.getName());
         model.addAttribute("timeToPlay", user.getTimeToPlay());
         model.addAttribute("timerId", timers);
         model.addAttribute("userId", userId);
@@ -107,26 +98,11 @@ public class UserController {
             Integer theTimerId = form.getTimerId();
             Integer total = theNumber + theTimerId;
             Timer theTimer=timerDao.findOne(form.getTimerId());
-//            user.setTimeToPlay(user.getTimeToPlay());
-//            theUser.aTimeToPlay(form.getTimerNumber());
-//            theUser.aTimeToPlay(theTimer);
-//            timeToPlay = timeToPlay + theTimer.getNumber();
             theUser.setTimeToPlay(total);
             userDao.save(theUser);
             return "redirect:/user/view/"+ theUser.getId();
-//            Integer test = form.getTimeToPlay()+form.getTimerId();
     }
-    @RequestMapping(value="play", method = RequestMethod.GET)
-    public String displayPlay(Model model){
-        model.addAttribute("users", userDao.findAll());
-        model.addAttribute("title", "Play Game");
-        return "user/play";
-    }
-    @RequestMapping(value="play", method=RequestMethod.POST)
-    public String processPlay(@RequestParam Integer[] timeToPlay){
-//        userDao.replace
-        return null;
-    }
+
     @RequestMapping(value="remove", method=RequestMethod.GET)
     public String displayRemoveUserForm(Model model){
         model.addAttribute("users", userDao.findAll());
@@ -138,7 +114,6 @@ public class UserController {
         for (int userId:userIds){
             userDao.delete(userId);
         }
-
         return "redirect:";
     }
 //todo make a report for week
@@ -159,9 +134,7 @@ public class UserController {
     }
     @RequestMapping(value="edit", method = RequestMethod.POST)
     public String addTime(Model model, @ModelAttribute @Valid ChangeTimeForm form,
-                       @RequestParam int timerId,
- @RequestParam int userId,
-            Errors errors){
+                       @RequestParam int timerId, @RequestParam int userId, Errors errors){
         if(errors.hasErrors()){
             model.addAttribute("form", form);
             return "user/edit";
@@ -185,7 +158,7 @@ public class UserController {
         AlterTimeForm form = new AlterTimeForm(
                 user.getTimeToPlay() , timerDao.findAll(), user
         );
-        model.addAttribute("title", user.getName());
+        model.addAttribute("title", "Reduce "+user.getName()+"'s Time");
         model.addAttribute("timeToPlay", user.getTimeToPlay());
         model.addAttribute("timerId", timers);
         model.addAttribute("userId", userId);
@@ -208,6 +181,7 @@ public class UserController {
         Integer theNumber=(form.getTimeToPlay());
         Integer theTimerId = form.getTimerId();
         Integer total = theNumber - theTimerId;
+
         theUser.setTimeToPlay(total);
         userDao.save(theUser);
         return "redirect:/user/view/" + theUser.getId();
@@ -216,11 +190,11 @@ public class UserController {
 
     @RequestMapping(value="time/{userId}", method = RequestMethod.GET)
     public  String time(Model model, @PathVariable Integer userId
-            , @RequestParam (required=false, name="userTimeToPlay")Integer userTimeToPlay
-                        , Timer timers
+//            , @RequestParam (required=false, name="userTimeToPlay")Integer userTimeToPlay
+//                        , Timer timers
     ) {
         User user = userDao.findOne(userId);
-        User timeToPlay = userDao.findOne(userTimeToPlay);
+        User timeToPlay = userDao.findOne(user.getTimeToPlay());
 //        Timer timer= timerDao.findAll(timerId);
         model.addAttribute("title",  user.getName());
         model.addAttribute("timeToPlay", user.getTimeToPlay());

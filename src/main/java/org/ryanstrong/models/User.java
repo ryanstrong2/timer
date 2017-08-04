@@ -4,7 +4,9 @@ package org.ryanstrong.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Created by ryanstrong on 6/12/17.
@@ -27,8 +29,8 @@ public class User {
 //    @JoinColumn(name="Timer_Id")
 //    private Timer timers;
 
-//    @ManyToMany
-//    private List<Timer> timers;
+    @ManyToMany
+    private List<Timer> timers;
 
 //    @OneToMany
 //    private List<Timer> timers;

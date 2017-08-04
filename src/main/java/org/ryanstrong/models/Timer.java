@@ -3,6 +3,8 @@ package org.ryanstrong.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.List;
 
 
 //import javax.validation.constraints.NotNull;
@@ -21,8 +23,8 @@ public class Timer {
     private int number;
 //    private static int nextId=1;
 
-//    @ManyToMany(mappedBy = "timers")
-//    private List<User> users;
+    @ManyToMany(mappedBy = "timers")
+    private List<User> users;
 
 //    @OneToMany
 //    @JoinColumn(name="timer_id")
