@@ -6,7 +6,6 @@ import org.ryanstrong.models.data.TimerDao;
 import org.ryanstrong.models.data.UserDao;
 import org.ryanstrong.models.forms.AlterTimeForm;
 import org.ryanstrong.models.forms.ChangeTimeForm;
-import org.ryanstrong.models.forms.DeleteTimeForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -98,25 +97,21 @@ public class UserController {
     @RequestMapping(value="alter", method=RequestMethod.POST)
     public String addTimeToPlay(Model model,  @ModelAttribute @Valid AlterTimeForm form, Errors errors
             ,@RequestParam int timeToPlay
-//            , @RequestParam int number
-//            , @RequestParam int timerId
-
     ){
         if (errors.hasErrors()) {
             model.addAttribute("form", form);
             return "user/alter/";
         }
             User theUser = userDao.findOne(form.getUserId());
-//            User timeToPlay = userDao.findOne(form.getTimeToPlay());
             Integer theNumber=(form.getTimeToPlay());
             Integer theTimerId = form.getTimerId();
-            Integer test = theNumber + theTimerId;
+            Integer total = theNumber + theTimerId;
             Timer theTimer=timerDao.findOne(form.getTimerId());
 //            user.setTimeToPlay(user.getTimeToPlay());
 //            theUser.aTimeToPlay(form.getTimerNumber());
 //            theUser.aTimeToPlay(theTimer);
 //            timeToPlay = timeToPlay + theTimer.getNumber();
-            theUser.setTimeToPlay(test);
+            theUser.setTimeToPlay(total);
             userDao.save(theUser);
             return "redirect:/user/view/"+ theUser.getId();
 //            Integer test = form.getTimeToPlay()+form.getTimerId();
@@ -143,6 +138,7 @@ public class UserController {
         for (int userId:userIds){
             userDao.delete(userId);
         }
+
         return "redirect:";
     }
 //todo make a report for week
@@ -185,38 +181,37 @@ public class UserController {
     @RequestMapping(value="remove-time/{userId}", method = RequestMethod.GET)
     public  String removeTime(Model model, @PathVariable Integer userId) {
         User user = userDao.findOne(userId);
-        DeleteTimeForm form = new DeleteTimeForm(timerDao.findAll(), user);
+//        DeleteTimeForm form = new DeleteTimeForm(timerDao.findAll(), user);
+        AlterTimeForm form = new AlterTimeForm(
+                user.getTimeToPlay() , timerDao.findAll(), user
+        );
         model.addAttribute("title", user.getName());
-//        model.addAttribute("timeToPlay", user.getTimers());
-//        model.addAttribute("timers", timerDao.findAll());
-//        model.addAttribute("timers", user.getTimers());
-        model.addAttribute("users", userDao.findAll());
-
+        model.addAttribute("timeToPlay", user.getTimeToPlay());
+        model.addAttribute("timerId", timers);
+        model.addAttribute("userId", userId);
         model.addAttribute("form", form);
+        model.addAttribute("users", userDao.findAll());
         return "user/remove-time";
     }
 
     @RequestMapping(value="remove-time", method = RequestMethod.POST)
     public String removeTime(
-            Model model, @ModelAttribute @Valid ChangeTimeForm form,
-                       @RequestParam int [] timerIds,
-            @RequestParam (required=false, name="userId") Integer userId,
-//                        @PathVariable Integer userId,
+            Model model, @ModelAttribute @Valid AlterTimeForm form,
+            @RequestParam int timeToPlay,
                        Errors errors){
         if(errors.hasErrors()){
             model.addAttribute("form", form);
             return "user/remove-time";
         }
-        for (int timerId:timerIds){
-            timerDao.delete(timerId);}
-
-        User theUser = userDao.findOne(userId);
+        User theUser = userDao.findOne(form.getUserId());
         Timer theTimer = timerDao.findOne(form.getTimerId());
-//        theUser.removeTime(theTimer);
-//        userDao.delete(theTimer);
-
+        Integer theNumber=(form.getTimeToPlay());
+        Integer theTimerId = form.getTimerId();
+        Integer total = theNumber - theTimerId;
+        theUser.setTimeToPlay(total);
         userDao.save(theUser);
-        return "redirect:/user/view/" + form.getUserId();
+        return "redirect:/user/view/" + theUser.getId();
+//                form.getUserId();
     }
 
     @RequestMapping(value="time/{userId}", method = RequestMethod.GET)

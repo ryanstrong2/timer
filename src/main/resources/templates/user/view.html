@@ -46,7 +46,7 @@
 <!--<p th:if="${timers==null}">users have not been given time</p>-->
 
 <p th:each="user : ${users}">
-    <a th:href ="'/user/edit/' + ${user.id}" th:text="${user.name } + '  Add'"> Add Time </a>  |
+    <a th:href ="'/user/alter/' + ${user.id}" th:text="${user.name } + '  Add'"> Add Time </a>  |
     <a th:href="'/user/remove-time/' + ${user.id}" th:text="${user.name} + '  Subtract'">Remove Time</a>
 </p>
 <nav th:replace="fragments:: footer"></nav>

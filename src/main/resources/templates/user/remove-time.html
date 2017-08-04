@@ -7,28 +7,22 @@
 <body>
 <h1 th:text="${title}">Title</h1>
 <nav th:replace="fragments:: navigation"></nav>
-
-<form method="post" style="max-width:600px;" th:objet="${form}" action="/user/remove-time">
-    <div th:each="timer:${timers}" class="checkbox">
-        <input type="checkbox" name="timerIds" th:value="${timer.id}" th:id="${timer.id}"/>
-        <label th:for="${timer.id}" th:text="${timer.number}"></label>
-        <br/>
+<p th:text="${timeToPlay}"></p>
+<form method="POST" style="max-width:200px;" th:object="${form}" action="/user/remove-time">
+    <div class="form-group">
+        <select name="timerId">
+            <option th:each="timer : *{timers}"
+                    th:text="${timer.number}"
+                    th:value="${timer.number}">
+                <span th:errors="*{timerId}" class="error"></span>
+            </option>
+        </select>
     </div>
-    <!--<input type="hidden" name="userId" th:value="*{user.id}"/>-->
-
-    <input type="submit" value="Delete Time"/>
-</form>
+    <input type="hidden" name="timeToPlay" th:value="*{user.timeToPlay}"/>
+    <input type="hidden" name="userId" th:value="*{user.id}"/>
+    <input type="submit" value="Update time"/>
 <nav th:replace="fragments:: footer"></nav>
-
+</form>
 </body>
 </html>
 
-<!--<div class="form-group">-->
-<!--<label form="number-field">Amount</label>-->
-<!--<input class="form-control" id="timerId" type="int" name="timeAmount"/>-->
-<!--<label th:for="number">Name</label>-->
-<!--<input class="form-control" th:field ="*{timerId}"/>-->
-<!--id="timer.number" type="int" name="timeAmount"-->
-<!--<span th:errors="*{timerId}" class="error"></span>-->
-<!--</div>-->
-<!--<input type="text" name="timeAmount"/>-->
