@@ -5,7 +5,8 @@
 <h2 th:text="${title}">Strong Title</h2>
 
 <nav th:replace="fragments:: navigation"></nav>
-<nav th:replace="fragments:: footer"></nav>
+<!--<nav th:replace="fragments:: nav"></nav>-->
+
 <label style="max-width:200px;">Time Change</label>
 <p th:text="${timeToPlay}"></p>
 <form method="POST" style="max-width:200px;" th:object="${form}" action="/user/alter">
@@ -28,6 +29,8 @@
     <input type="hidden" name="userId" th:value="*{user.id}"/>
     <input type="submit" value="Update time"/>
 </form>
+<nav th:replace="fragments:: footer"></nav>
+
 </body>
 </html>
 <!--<input class="form-control" th:field="*{timeToPlay}"/>-->

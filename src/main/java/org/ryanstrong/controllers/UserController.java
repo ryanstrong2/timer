@@ -1,7 +1,9 @@
 package org.ryanstrong.controllers;
 
+import org.ryanstrong.models.Report;
 import org.ryanstrong.models.Timer;
 import org.ryanstrong.models.User;
+import org.ryanstrong.models.data.ReportDao;
 import org.ryanstrong.models.data.TimerDao;
 import org.ryanstrong.models.data.UserDao;
 import org.ryanstrong.models.forms.AlterTimeForm;
@@ -30,9 +32,12 @@ public class UserController {
     @Autowired
     private TimerDao timerDao;
 
+    @Autowired
+    private ReportDao reportDao;
+
     @OneToMany
     @org.ryanstrong.models.JoinColumn(name="User_id")
-    private List<Timer> timers = new ArrayList<>();
+    private List<Report> timers = new ArrayList<>();
 
 //    @ManyToOne
 //    private Timer timers;
@@ -88,17 +93,20 @@ public class UserController {
     @RequestMapping(value="alter", method=RequestMethod.POST)
     public String addTimeToPlay(Model model,  @ModelAttribute @Valid AlterTimeForm form, Errors errors
             ,@RequestParam int timeToPlay
+//                                ,@RequestParam int reportId
     ){
         if (errors.hasErrors()) {
             model.addAttribute("form", form);
             return "user/alter/";
         }
             User theUser = userDao.findOne(form.getUserId());
+//            Report theReport = reportDao.findOne(reportId);
             Integer theNumber=(form.getTimeToPlay());
             Integer theTimerId = form.getTimerId();
             Integer total = theNumber + theTimerId;
             Timer theTimer=timerDao.findOne(form.getTimerId());
             theUser.setTimeToPlay(total);
+            reportDao.save(new Report());
             userDao.save(theUser);
             return "redirect:/user/view/"+ theUser.getId();
     }
