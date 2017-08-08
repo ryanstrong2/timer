@@ -32,15 +32,19 @@ public class User {
     @ManyToMany
     private List<Timer> timers;
 
+    @ManyToMany
+    private List<Report> reports;
+
 //    @OneToMany
 //    private List<Timer> timers;
 
     public User() {
     }
 
-    public User(String name, Integer timeToPlay) {
+    public User(String name, Integer timeToPlay, List<Report> reports) {
         this.name = name;
         this.timeToPlay=timeToPlay;
+        this.reports = reports;
 //        this.timeToPlay = timeToPlay + timer.getNumber();
 //        timer = new Timer();
     }
@@ -72,10 +76,10 @@ public class User {
 
     public void setName(String name) {this.name = name;}
 
-//    public List<Timer> getTimers(){return timers;
-//    }
-//    public void setTimers(List<Timer> timers) {this.timers = timers;
-//    }
+    public List<Report> getReports(){return reports;
+    }
+    public void setReports(List<Report> reports) {this.reports = reports;
+    }
     public Integer getTimeToPlay() {
         return timeToPlay;
     }

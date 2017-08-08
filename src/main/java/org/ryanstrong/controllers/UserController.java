@@ -93,6 +93,7 @@ public class UserController {
     @RequestMapping(value="alter", method=RequestMethod.POST)
     public String addTimeToPlay(Model model,  @ModelAttribute @Valid AlterTimeForm form, Errors errors
             ,@RequestParam int timeToPlay
+                                ,@ModelAttribute @Valid Report newReport
 //                                ,@RequestParam int reportId
     ){
         if (errors.hasErrors()) {
