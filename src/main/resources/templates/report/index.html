@@ -6,7 +6,10 @@
 <nav th:replace="fragments::navigation"></nav>
 <table class="table" style="max-width:400px;">
     <tr>
-        <th th:text="${report}"</th>
+        <th th:text="${report}"></th>
+    </tr>
+    <tr th:each="report:${reports}">
+        <td th:text
     </tr>
 </table>
 </body>
