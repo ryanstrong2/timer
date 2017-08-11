@@ -1,5 +1,6 @@
 package org.ryanstrong.models.forms;
 
+import org.ryanstrong.models.Report;
 import org.ryanstrong.models.Timer;
 import org.ryanstrong.models.User;
 
@@ -22,6 +23,7 @@ public class AlterTimeForm {
 
     private Integer number;
 
+    private Report record;
     private Iterable<Timer> timers;
 //    private Integer total;
 
@@ -37,12 +39,12 @@ public class AlterTimeForm {
             Integer timeToPlay,
 //            Integer timerNumber,
             Iterable <Timer> timers
-//            , Integer number
+            , Report record
             , User user
     ){
         this.timeToPlay = timeToPlay;
         this.timers = timers;
-//        this.number = number;
+        this.record = record;
         this.user =user;
     }
 

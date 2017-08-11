@@ -1,10 +1,7 @@
 package org.ryanstrong.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -32,8 +29,8 @@ public class User {
     @ManyToMany
     private List<Timer> timers;
 
-    @ManyToMany
-    private List<Report> reports;
+    @ManyToOne
+    private Report reports;
 
 //    @OneToMany
 //    private List<Timer> timers;
@@ -41,7 +38,7 @@ public class User {
     public User() {
     }
 
-    public User(String name, Integer timeToPlay, List<Report> reports) {
+    public User(String name, Integer timeToPlay,Report reports) {
         this.name = name;
         this.timeToPlay=timeToPlay;
         this.reports = reports;
@@ -76,9 +73,9 @@ public class User {
 
     public void setName(String name) {this.name = name;}
 
-    public List<Report> getReports(){return reports;
+    public Report getReports(){return reports;
     }
-    public void setReports(List<Report> reports) {this.reports = reports;
+    public void setReports(Report reports) {this.reports = reports;
     }
     public Integer getTimeToPlay() {
         return timeToPlay;

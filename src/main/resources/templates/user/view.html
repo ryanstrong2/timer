@@ -4,6 +4,7 @@
 <body class="container">
 <h1 th:text="${title}">Strong</h1>
 <!--<nav th:replace="fragments :: navigation"></nav>-->
+
 <p th:each="timer: *{timers}"
    th:text="${timer.number}"/>
 <!--todo why doesn't this work -->
@@ -17,7 +18,8 @@
 
 <ul >
     <li th:text="${timeToPlay}">number</li>
-    <!--<li th:each="timer : ${timers}" th:text="${user.timers}">user timer</li>-->
+    <li th:text="${reports}"></li>
+    <li th:each="report : ${reports}"></li>
 </ul>
            <!--<table style="max-width:600px;" th:object="${form}" action="/user/view">-->
             <!--<tr th:each="timer: *{timers}"-->
@@ -44,7 +46,6 @@
     <!--<li th:each="timer:${timers}" th:text="${timer.number}"></li>-->
 <!--</ul>-->
 <!--<p th:if="${timers==null}">users have not been given time</p>-->
-
 <p th:each="user : ${users}">
     <a th:href ="'/user/alter/' + ${user.id}" th:text="${user.name } + '  Add'"> Add Time </a>  |
     <a th:href="'/user/remove-time/' + ${user.id}" th:text="${user.name} + '  Subtract'">Remove Time</a>

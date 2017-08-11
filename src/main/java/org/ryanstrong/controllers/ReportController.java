@@ -28,7 +28,7 @@ public class ReportController {
 //        User user = userDao.findOne(userId);
 
 //        model.addAttribute("title", user.getName());
-//        model.addAttribute("report", reportDao.findAll());
+        model.addAttribute("reports", reportDao.findAll());
         model.addAttribute("report", "Report Page");
         return "report/index";
     }

@@ -9,8 +9,9 @@
         <th th:text="${report}"></th>
     </tr>
     <tr th:each="report:${reports}">
-        <td th:text
+        <td th:text="${report.record}"></td>
     </tr>
 </table>
+<nav th:replace="fragments:: footer}"></nav>
 </body>
 </html>
