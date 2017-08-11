@@ -82,7 +82,9 @@ public class UserController {
         User user = userDao.findOne(userId);
         AlterTimeForm form = new AlterTimeForm(
                 user.getTimeToPlay() , timerDao.findAll(),
-                reportDao.findOne(userId), user
+                reportDao.findOne(userId)
+
+                , user
         );
         model.addAttribute("title", "Add time for:  "+ user.getName());
         model.addAttribute("timeToPlay", user.getTimeToPlay());
