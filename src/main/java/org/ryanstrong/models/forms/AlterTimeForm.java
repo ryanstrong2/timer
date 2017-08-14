@@ -1,10 +1,10 @@
 package org.ryanstrong.models.forms;
 
-import org.ryanstrong.models.Report;
 import org.ryanstrong.models.Timer;
 import org.ryanstrong.models.User;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Created by ryanstrong on 7/12/17.
@@ -23,7 +23,7 @@ public class AlterTimeForm {
 
     private Integer number;
 
-    private Report record;
+    private List record;
     private Iterable<Timer> timers;
 //    private Integer total;
 
@@ -36,14 +36,11 @@ public class AlterTimeForm {
 //    timers is a list of values
 
 
-
-
-
     public AlterTimeForm(
             Integer timeToPlay,
 //            Integer timerNumber,
             Iterable <Timer> timers
-            , Report record
+            , List<Integer> record
             , User user
     ){
         this.timeToPlay = timeToPlay;
@@ -67,10 +64,10 @@ public class AlterTimeForm {
     public void setNumber(Integer number) {
         this.number = number;
     }
-    public Report getRecord() {
+    public List<Integer> getRecord() {
         return record;
     }
-    public void setRecord(Report record) {
+    public void setRecord(List<Integer> record) {
         this.record = record;
     }
 //    timerNumber is the value of timers

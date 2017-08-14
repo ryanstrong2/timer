@@ -3,7 +3,6 @@ package org.ryanstrong.controllers;
 import org.ryanstrong.models.Report;
 import org.ryanstrong.models.Timer;
 import org.ryanstrong.models.User;
-import org.ryanstrong.models.data.ReportDao;
 import org.ryanstrong.models.data.TimerDao;
 import org.ryanstrong.models.data.UserDao;
 import org.ryanstrong.models.forms.AlterTimeForm;
@@ -32,8 +31,8 @@ public class UserController {
     @Autowired
     private TimerDao timerDao;
 
-    @Autowired
-    private ReportDao reportDao;
+//    @Autowired
+//    private ReportDao reportDao;
 
     @OneToMany
     @org.ryanstrong.models.JoinColumn(name="User_id")
@@ -82,8 +81,8 @@ public class UserController {
         User user = userDao.findOne(userId);
         AlterTimeForm form = new AlterTimeForm(
                 user.getTimeToPlay() , timerDao.findAll(),
-                reportDao.findOne(userId)
-
+//                reportDao.findOne(userId)
+                    user.getReports()
                 , user
         );
         model.addAttribute("title", "Add time for:  "+ user.getName());
@@ -91,8 +90,8 @@ public class UserController {
         model.addAttribute("timerId", timers);
         model.addAttribute("userId", userId);
 //        model.addAttribute("record", reportDao.findOne(userId).getRecord());
-//        model.addAttribute("record", user.getReports());
-        model.addAttribute(new Report());
+        model.addAttribute("report", user.getReports());
+//        model.addAttribute(new Report());
         model.addAttribute("form", form);
         return "user/alter";
     }
@@ -108,12 +107,14 @@ public class UserController {
         }
             User theUser = userDao.findOne(form.getUserId());
 //            Report theReport = reportDao.findOne(reportId);
+            List<Integer> growList = theUser.getReports();
             Integer theNumber=(form.getTimeToPlay());
             Integer theTimerId = form.getTimerId();
             Integer total = theNumber + theTimerId;
-            Timer theTimer=timerDao.findOne(form.getTimerId());
+//            Timer theTimer=timerDao.findOne(form.getTimerId());
             theUser.setTimeToPlay(total);
-            theUser.setReports((new Report()));
+//            theUser.
+            growList.add(total );
 //            reportDao.save(new Report());
             userDao.save(theUser);
             return "redirect:/user/view/"+ theUser.getId();
@@ -173,7 +174,9 @@ public class UserController {
 //        DeleteTimeForm form = new DeleteTimeForm(timerDao.findAll(), user);
         AlterTimeForm form = new AlterTimeForm(
                 user.getTimeToPlay() , timerDao.findAll(),
-                reportDao.findOne(userId), user
+//                reportDao.findOne(userId)
+                user.getReports()
+                , user
         );
         model.addAttribute("title", "Reduce "+user.getName()+"'s Time");
         model.addAttribute("timeToPlay", user.getTimeToPlay());
@@ -254,7 +257,7 @@ public class UserController {
 //        ChangeTimeForm form = new ChangeTimeForm(timerDao.findAll(), user);
         model.addAttribute("title", user.getName());
         model.addAttribute("timeToPlay", user.getTimeToPlay());
-        model.addAttribute("reports", reportDao.findAll());
+        model.addAttribute("reports", user.getReports());
 //        model.addAttribute("reports", user.getReports());
         model.addAttribute("users", userDao.findAll());
         model.addAttribute("user", user.getId());

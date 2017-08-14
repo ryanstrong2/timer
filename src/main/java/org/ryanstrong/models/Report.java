@@ -3,7 +3,6 @@ package org.ryanstrong.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import java.sql.Time;
 
 /**
@@ -16,8 +15,10 @@ public class Report {
     @GeneratedValue
     private Integer id;
 
-    @ManyToOne
-    private User user;
+
+
+//    @ManyToOne
+//    private User user;
 
     private Time record;
 
@@ -29,7 +30,16 @@ public class Report {
 
     public Integer getId(){return id;}
 
+    public void setId(Integer Id){this.id=id;}
+
     public Time getRecord(){return record;}
 
-    public void setRecord(Time record){this.record=record;}
+//    public void setRecord(Time record){this.record=record;}
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 }
