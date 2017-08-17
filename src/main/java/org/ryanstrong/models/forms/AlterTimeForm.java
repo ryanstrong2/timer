@@ -1,5 +1,6 @@
 package org.ryanstrong.models.forms;
 
+import org.ryanstrong.models.Report;
 import org.ryanstrong.models.Timer;
 import org.ryanstrong.models.User;
 
@@ -23,15 +24,15 @@ public class AlterTimeForm {
 
     private Integer number;
 
-    private List record;
+    private List<Report> record;
     private Iterable<Timer> timers;
 //    private Integer total;
 
     public AlterTimeForm(){}
-    public void timer (Integer timer)
-    {
-        timeToPlay = timeToPlay + timer;
-    }
+//    public void timer (Integer timer)
+//    {
+//        timeToPlay = timeToPlay + timer;
+//    }
 //   timeToPlay stores accumulated time
 //    timers is a list of values
 
@@ -40,7 +41,7 @@ public class AlterTimeForm {
             Integer timeToPlay,
 //            Integer timerNumber,
             Iterable <Timer> timers
-            , List<Integer> record
+            , List<Report> record
             , User user
     ){
         this.timeToPlay = timeToPlay;
@@ -64,10 +65,10 @@ public class AlterTimeForm {
     public void setNumber(Integer number) {
         this.number = number;
     }
-    public List<Integer> getRecord() {
+    public List<Report> getRecord() {
         return record;
     }
-    public void setRecord(List<Integer> record) {
+    public void setRecord(List<Report> record) {
         this.record = record;
     }
 //    timerNumber is the value of timers
