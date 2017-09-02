@@ -30,7 +30,7 @@
     <input type="submit" value="Update time"/>
 </form>
 <form method="post" style="max-width:600px;" th:object="${report}">
-
+    <!--<input type="hidden" name="date" th:value="*{date}"/>-->
     <input type="hidden" name="timeToPlay" th:value="*{timeToPlay}"/>
 </form>
 <nav th:replace="fragments:: footer"></nav>
