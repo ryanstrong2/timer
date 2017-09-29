@@ -83,16 +83,16 @@ public class UserController {
         AlterTimeForm form = new AlterTimeForm(
                 user.getTimeToPlay() , timerDao.findAll(),
 //                reportDao.findOne(userId)
-                    user.getReports()
-                , user
+                    user.getReports(),
+                user
         );
-        Report now = (Report) model.addAttribute(new Report());
+//        Report now = (Report) model.addAttribute(new Report());
         model.addAttribute("title", "Add time for:  "+ user.getName());
         model.addAttribute("timeToPlay", user.getTimeToPlay());
         model.addAttribute("timerId", timers);
         model.addAttribute("userId", userId);
 //        model.addAttribute("record", reportDao.findOne(userId).getRecord());
-        model.addAttribute("report", user.getReports());
+//        model.addAttribute("report", user.getReports());
 //        model.addAttribute(new Report());
         model.addAttribute("form", form);
         return "user/alter";
@@ -116,7 +116,8 @@ public class UserController {
 //            Timer theTimer=timerDao.findOne(form.getTimerId());
             theUser.setTimeToPlay(total);
 //            growList.add(total );
-            reportDao.save(new Report());
+//            reportDao.save(new Report());
+            reportDao.save(now);
             userDao.save(theUser);
             return "redirect:/user/view/"+ theUser.getId();
     }
@@ -172,12 +173,11 @@ public class UserController {
     @RequestMapping(value="remove-time/{userId}", method = RequestMethod.GET)
     public  String removeTime(Model model, @PathVariable Integer userId) {
         User user = userDao.findOne(userId);
-//        DeleteTimeForm form = new DeleteTimeForm(timerDao.findAll(), user);
         AlterTimeForm form = new AlterTimeForm(
                 user.getTimeToPlay() , timerDao.findAll(),
 //                reportDao.findOne(userId)
-                user.getReports()
-                , user
+                user.getReports(),
+                user
         );
         model.addAttribute("title", "Reduce "+user.getName()+"'s Time");
         model.addAttribute("timeToPlay", user.getTimeToPlay());
@@ -258,8 +258,8 @@ public class UserController {
 //        ChangeTimeForm form = new ChangeTimeForm(timerDao.findAll(), user);
         model.addAttribute("title", user.getName());
         model.addAttribute("timeToPlay", user.getTimeToPlay());
-        model.addAttribute("reports", user.getReports());
-//        model.addAttribute("reports", user.getReports());
+//        model.addAttribute("reports", user.getReport());
+
         model.addAttribute("users", userDao.findAll());
         model.addAttribute("user", user.getId());
 //        model.addAttribute("form", form);

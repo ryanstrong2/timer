@@ -31,7 +31,7 @@
 </form>
 <form method="post" style="max-width:600px;" th:object="${report}">
     <!--<input type="hidden" name="date" th:value="*{date}"/>-->
-    <input type="hidden" name="timeToPlay" th:value="*{timeToPlay}"/>
+    <input type="hidden" name="timeToPlay" th:value="*{user.timeToPlay}"/>
 </form>
 <nav th:replace="fragments:: footer"></nav>
 

@@ -1,10 +1,7 @@
 package org.ryanstrong.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import java.util.Date;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 /**
  * Created by ryanstrong on 8/5/17.
@@ -19,21 +16,16 @@ public class Report {
     @ManyToOne
     private User user;
 
-    @ManyToOne
-    private Date record;
+//    @ManyToOne
+    private LocalDateTime record;
 
     private Integer timeToPlay;
-
-//    @ManyToOne
-//    private User user;
-
-
 
     public Report(){}
 
     public Report(
-            Date record,
             User user,
+            LocalDateTime record,
             Integer timeToPlay){
         this.user=user;
         this.record=record;
@@ -44,7 +36,7 @@ public class Report {
 
     public void setId(Integer Id){this.id=id;}
 
-    public Date getRecord(){return record;}
+    public LocalDateTime getRecord(){return record;}
 
     public Integer getTimeToPlay() {
         return timeToPlay;
@@ -54,7 +46,7 @@ public class Report {
         this.timeToPlay = timeToPlay;
     }
 
-    public void setRecord(Date record){this.record=record;}
+    public void setRecord(LocalDateTime record){this.record=record;}
     public User getUser() {
         return user;
     }

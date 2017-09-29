@@ -24,25 +24,25 @@ public class AlterTimeForm {
 
     private Integer number;
 
-    private List<Report> record;
+    private List<Report> reports;
     private Iterable<Timer> timers;
 
-    public AlterTimeForm(){}
+    public AlterTimeForm()
+//            (Integer timeToPlay, Iterable<Timer> timers, List<Report> reports, User user)
+    {}
 
 //   timeToPlay stores accumulated time
 //    timers is a list of values
-
-
     public AlterTimeForm(
             Integer timeToPlay,
-//            Integer timerNumber,
             Iterable <Timer> timers
-//            , List<Report> record
+            , List<Report> reports
             , User user
-    ){
+    )
+    {
         this.timeToPlay = timeToPlay;
         this.timers = timers;
-//        this.record = record;
+        this.reports = reports;
         this.user =user;
     }
 
@@ -61,11 +61,11 @@ public class AlterTimeForm {
     public void setNumber(Integer number) {
         this.number = number;
     }
-    public List<Report> getRecord() {
-        return record;
+    public List<Report> getReports() {
+        return reports;
     }
-    public void setRecord(List<Report> record) {
-        this.record = record;
+    public void setReports(List<Report>  reports) {
+        this.reports = reports;
     }
 //    timerNumber is the value of timers
 //    public int getTimerNumber() {return timerNumber();}

@@ -18,7 +18,7 @@
 
 <ul >
     <li th:text="${timeToPlay}">number</li>
-    <li th:text="${reports}" ></li>
+    <!--<li th:text="${reports}" ></li> with bullet -->
     <li th:each="report : ${reports}"></li>
 </ul>
            <!--<table style="max-width:600px;" th:object="${form}" action="/user/view">-->
@@ -33,8 +33,8 @@
                 <!--</tr>-->
             <!--</td>-->
            <!--</table>-->
-<p th:text="${timeToPlay}"/>
-<p th:text="${timers}"/>
+<!--<p th:text="${timeToPlay}"/>       maybe redundant-->
+<!--<p th:text="${timers}"/>-->
         <!--</select>-->
     <!--</div>-->
     <!--<input type="hidden" name="userId" th:value="${userId}"/>-->
