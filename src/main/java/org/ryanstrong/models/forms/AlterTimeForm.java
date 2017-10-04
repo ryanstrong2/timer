@@ -37,12 +37,12 @@ public class AlterTimeForm {
             Integer timeToPlay,
 //            Integer timerNumber,
             Iterable <Timer> timers
-//            , List<Report> record
+            , List<Report> record
             , User user
     ){
         this.timeToPlay = timeToPlay;
         this.timers = timers;
-//        this.record = record;
+        this.record = record;
         this.user =user;
     }
 
