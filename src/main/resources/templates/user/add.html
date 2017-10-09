@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
-
-<body>
+<head th:replace="fragments::head"></head>
+<body class="container">
 <h1 th:text="${title}">Title</h1>
-<nav th:replace="fragments:: navigation"></nav>
-<nav th:replace="fragments:: footer"></nav>
+<nav th:replace="fragments:: header"></nav>
 
 <form method="post" style="max-width:600px;" th:object="${user}">
     <div class="form-group">
@@ -18,6 +16,7 @@
         <input class="form-control" th:field="*{timeToPlay}"/>
         <span th:errors="*{timeToPlay}" class="error"></span>
     </div>
+
     <input type="submit" value="Add New User"/>
 </form>
 </body>

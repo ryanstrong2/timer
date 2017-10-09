@@ -4,7 +4,7 @@
 <body class="container">
 <h1 th:text="${title}">Strong</h1>
 <!--<nav th:replace="fragments :: navigation"></nav>-->
-
+<nav th:replace="fragments:: header"></nav>
 <p th:each="timer: *{timers}"
    th:text="${timer.number}"/>
 <!--todo why doesn't this work -->
@@ -18,8 +18,8 @@
 
 <ul >
     <li th:text="${timeToPlay}">number</li>
-    <li th:text="${reports}" ></li>
-    <li th:each="report : ${reports}"></li>
+    <!--<li th:text="${reports}" ></li>-->
+    <!--<li th:each="report : #{reports}"></li>-->
 </ul>
            <!--<table style="max-width:600px;" th:object="${form}" action="/user/view">-->
             <!--<tr th:each="timer: *{timers}"-->
@@ -33,8 +33,8 @@
                 <!--</tr>-->
             <!--</td>-->
            <!--</table>-->
-<p th:text="${timeToPlay}"/>
-<p th:text="${timers}"/>
+<!--<p th:text="${timeToPlay}"/>-->
+<!--<p th:text="${timers}"/>-->
         <!--</select>-->
     <!--</div>-->
     <!--<input type="hidden" name="userId" th:value="${userId}"/>-->
@@ -50,7 +50,6 @@
     <a th:href ="'/user/alter/' + ${user.id}" th:text="${user.name } + '  Add'"> Add Time </a>  |
     <a th:href="'/user/remove-time/' + ${user.id}" th:text="${user.name} + '  Subtract'">Remove Time</a>
 </p>
-<nav th:replace="fragments:: footer"></nav>
 
 
 </body>

@@ -34,7 +34,6 @@ public class Dater {
 //            Report report
 //    ){
 //        this.report = report;
-//
 //    }
 //
 //    public Report getReport() {

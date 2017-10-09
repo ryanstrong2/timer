@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
-<body>
+<head th:replace="fragments::head"></head>
+<body class="container">
 <h1 th:text="${title}">Strong</h1>
-<nav th:replace="fragments:: navigation"></nav>
-<nav th:replace="fragments:: footer"></nav>
+<nav th:replace="fragments:: header"></nav>
 
 <ul>
     <li th:each="user : ${users}">

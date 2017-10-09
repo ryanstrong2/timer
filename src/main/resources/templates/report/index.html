@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
-<body>
-<h2 th:text="${title}" style="max-width:200px;"> Strong Report</h2>
-<nav th:replace="fragments::navigation"></nav>
+<head th:replace="fragments::head"></head>
+<body class="container">
+<h2 th:text="${title}"> Strong Report</h2>
+<!--<h2 th:text="${title}" style="max-width:200px;"> Strong Report</h2>-->
+
+<nav th:replace="fragments:: header"></nav>
+
+
 <table class="table" style="max-width:400px;">
     <tr>
         <th th:text="${report}"></th>
     </tr>
     <tr th:each="report:${reports}">
-        <td th:text="${report.record}"></td>
+        <td th:text="${report.userName}"></td>
+        <td th:text="${report.instant}"></td>
+        <td th:text="${report.timeToPlay}"></td>
     </tr>
 </table>
-<nav th:replace="fragments:: footer}"></nav>
 </body>
 </html>

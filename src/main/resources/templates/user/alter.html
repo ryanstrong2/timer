@@ -1,37 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
-<body>
+<head th:replace="fragments::head"></head>
+<body class="container">
 <h2 th:text="${title}">Strong Title</h2>
-
-<nav th:replace="fragments:: navigation"></nav>
-<!--<nav th:replace="fragments:: nav"></nav>-->
+<nav th:replace="fragments:: header"></nav>
 
 <label style="max-width:200px;">Time Change</label>
 <p th:text="${timeToPlay}"></p>
 <form method="POST" style="max-width:200px;" th:object="${form}" action="/user/alter">
     <div class="form-group">
-        <!--<label th:for="timeToPlay">Time To Play</label>-->
-        <!--<input class="form-control" th:field="*{timeToPlay}"/>-->
-        <!--<input type="number" name="timeToPlay" th:value="*{timers}"/>-->
         <select name="timerId">
-            <!--input is timer.number-->
             <option th:each="timer : *{timers}"
                     th:text="${timer.number}"
                     th:value="${timer.number}">
         <span th:errors="*{timerId}" class="error"></span>
-
             </option>
         </select>
     </div>
-    <!--<input type="hidden" name="report" th:value="*{report.timeToPlay}"/>-->
+    <!--<input type="hidden" name="timeToPlay" th:value="*{report.timeToPlay}"/>-->
     <input type="hidden" name="timeToPlay" th:value="*{user.timeToPlay}"/>
     <input type="hidden" name="userId" th:value="*{user.id}"/>
     <input type="submit" value="Update time"/>
 </form>
 <form method="post" style="max-width:600px;" th:object="${report}">
-    <!--<input type="hidden" name="date" th:value="*{date}"/>-->
-    <input type="hidden" name="timeToPlay" th:value="*{timeToPlay}"/>
+    <!--<input type="hidden" name="record" th:value="#{report.record}"/>-->
+    <input type="hidden" name="timeToPlay" th:value="#{report.timeToPlay}"/>
 </form>
 <nav th:replace="fragments:: footer"></nav>
 
