@@ -12,7 +12,6 @@ public class DeleteTimeForm {
     @NotNull
     private Integer userId;
 
-//    @NotNull
     private int timerId;
 
     private Iterable<Timer> timers;

@@ -44,9 +44,6 @@ public class ChangeTimeForm {
         return timerId;
     }
 
-//    public void setTimerId(int timerId) {
-//        this.timerId = timerId;
-//    }
 
     public Iterable<Timer> getTimers() {
         return timers;

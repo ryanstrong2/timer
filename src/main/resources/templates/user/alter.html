@@ -17,17 +17,14 @@
             </option>
         </select>
     </div>
-    <!--<input type="hidden" name="timeToPlay" th:value="*{report.timeToPlay}"/>-->
     <input type="hidden" name="timeToPlay" th:value="*{user.timeToPlay}"/>
     <input type="hidden" name="userId" th:value="*{user.id}"/>
     <input type="submit" value="Update time"/>
 </form>
 <form method="post" style="max-width:600px;" th:object="${report}">
-    <!--<input type="hidden" name="record" th:value="#{report.record}"/>-->
     <input type="hidden" name="timeToPlay" th:value="#{report.timeToPlay}"/>
 </form>
 <nav th:replace="fragments:: footer"></nav>
 
 </body>
 </html>
-<!--<input class="form-control" th:field="*{timeToPlay}"/>-->

@@ -24,17 +24,11 @@ public class ReportController {
     @Autowired
     private UserDao userDao;
 
-//    @RequestMapping(value = "report/{userId}", method = RequestMethod.GET)
     @RequestMapping(value="", method = RequestMethod.GET)
     public String index(Model model
-//            , @PathVariable Integer userId
-//            , @RequestParam User user
     ){
 
-//        Report report= (Report) reportDao.findAll();
         model.addAttribute("title", "Reports");
-//        model.addAttribute("user", report.getUser());
-//        model.addAttribute("name", report.getUser());
         model.addAttribute("reports", reportDao.findAll());
         model.addAttribute("report", "Report Page");
         return "report/index";

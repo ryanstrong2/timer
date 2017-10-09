@@ -42,19 +42,6 @@ public class UserController {
     private List<Timer> timers = new ArrayList<>();
 
     private Date now;
-//    @ManyToOne
-//    private Timer timers;
-
-//    @ManyToOne
-//    private List<User> users;
-
-//    @ManyToOne
-//    private Timer timer;
-
-//    @OneToMany
-//    @org.ryanstrong.models.JoinColumn(name="User_id")
-//    private List<User> users = new ArrayList<>();
-
 
     @RequestMapping(value="")
     public String index(Model model){
@@ -116,24 +103,15 @@ public class UserController {
 
             User theUser = userDao.findOne(form.getUserId());
             Report theReport = reportDao.findOne(form.getUserId());
-//            theReport.setUser(theUser);
             List<Report> growList = theUser.getReports();
             Integer theNumber=(form.getTimeToPlay());
             Integer theTimerId = form.getTimerId();
             Integer total = theNumber + theTimerId;
-//            Timer theTimer=timerDao.findOne(form.getTimerId());
             theUser.setTimeToPlay(total);
-//            theReport.setTimeToPlay(total);
-//            theReport.setUser(theUser);
-//            theReport.setUserName(theUser.getName());
-//            theReport.setInstant(Instant.now());
             newReport.setTimeToPlay(total);
             newReport.setUser(theUser);
             newReport.setUserName(theUser.getName());
             newReport.setInstant(Instant.now());
-
-//            growList.add(theUser, total);
-//            reportDao.save(theReport);
             reportDao.save(newReport);
             userDao.save(theUser);
             return "redirect:/user/view/"+ theUser.getId();
@@ -158,14 +136,8 @@ public class UserController {
         User user = userDao.findOne(userId);
         ChangeTimeForm form = new ChangeTimeForm(timerDao.findAll(), user);
         model.addAttribute("title", "Increase time for: " + user.getName());
-//        model.addAttribute("timeToPlay", user.getTimer());
-//        model.addAttribute("timer", user.getName());
-//        model.addAttribute("timers", user.getTimers());
         model.addAttribute("timeToPlay", user.getTimeToPlay());
         model.addAttribute("form", form);
-//        model.addAttribute("users", userDao.findAll());
-//        model.addAttribute("timers", timerDao.findAll());
-
         return "user/edit";
     }
     @RequestMapping(value="edit", method = RequestMethod.POST)
@@ -179,17 +151,13 @@ public class UserController {
         Timer theTimer = timerDao.findOne(form.getTimerId());
 
         userDao.save(theUser);
-//        userDao.save(form);
         return "redirect:/user/view/" + theUser.getId();
-//        return "user/edit";
     }
     @RequestMapping(value="remove-time/{userId}", method = RequestMethod.GET)
     public  String removeTime(Model model, @PathVariable Integer userId) {
         User user = userDao.findOne(userId);
-//        DeleteTimeForm form = new DeleteTimeForm(timerDao.findAll(), user);
         AlterTimeForm form = new AlterTimeForm(
                 user.getTimeToPlay() , timerDao.findAll(),
-//                reportDao.findOne(userId)
                 user.getReports(),
                 user
         );
@@ -213,7 +181,6 @@ public class UserController {
             model.addAttribute("form", form);
             return "user/remove-time";
         }
-//        Report newReport = reportDao.findOne(form.getTimeToPlay());
         User theUser = userDao.findOne(form.getUserId());
         Timer theTimer = timerDao.findOne(form.getTimerId());
         Integer theNumber=(form.getTimeToPlay());
@@ -225,26 +192,18 @@ public class UserController {
         newReport.setUser(theUser);
         newReport.setUserName(theUser.getName());
         newReport.setInstant(Instant.now());
-
-
         reportDao.save(newReport);
         userDao.save(theUser);
         return "redirect:/user/view/" + theUser.getId();
-//                form.getUserId();
     }
 
     @RequestMapping(value="time/{userId}", method = RequestMethod.GET)
     public  String time(Model model, @PathVariable Integer userId
-//            , @RequestParam (required=false, name="userTimeToPlay")Integer userTimeToPlay
-//                        , Timer timers
     ) {
         User user = userDao.findOne(userId);
         User timeToPlay = userDao.findOne(user.getTimeToPlay());
-//        Timer timer= timerDao.findAll(timerId);
         model.addAttribute("title",  user.getName());
         model.addAttribute("timeToPlay", user.getTimeToPlay());
-
-
         return "user/time";
     }
 
@@ -272,15 +231,11 @@ public class UserController {
     public  String view(Model model, @PathVariable Integer userId){
 
         User user = userDao.findOne(userId);
-//        ChangeTimeForm form = new ChangeTimeForm(timerDao.findAll(), user);
         model.addAttribute("title", user.getName());
         model.addAttribute("timeToPlay", user.getTimeToPlay());
         model.addAttribute("reports", user.getReports());
-//        model.addAttribute("reports", user.getReports());
         model.addAttribute("users", userDao.findAll());
         model.addAttribute("user", user.getId());
-//        model.addAttribute("form", form);
-
         return "user/view";
     }
     @RequestMapping(value="view", method = RequestMethod.POST)
@@ -294,24 +249,7 @@ public class UserController {
 
         User theUser = userDao.findOne(form.getUserId());
         Timer theTimer = timerDao.findOne(form.getTimerId());
-//        theUser.setTimers(theTimer);
         userDao.save(theUser);
         return "user/view/" + theUser.getId();
     }
-
 }
-
-//    @ResponseStatus(HttpStatus.NOT_FOUND)
-//    public class NotFoundException extends RuntimeException {}
-
-//    @DeleteMapping("/remove-time/{timerId}")
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public void deleteTimer(@PathVariable int timerId){
-//        try{
-//            userDao.delete(timerId);
-//        } catch (EmptyResultDataAccessException ex){
-//            throw new NotFoundException();
-//
-//        }
-//    }
-//    @RequestMapping(value="remove-time/{userId}", method= RequestMethod.DELETE)
