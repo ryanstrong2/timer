@@ -49,22 +49,12 @@ public class User {
 //        timer = new Timer();
     }
 
-//    public void addTime (Timer unit) {
-//        timers.add(unit);
-//    }
+
 
     public void aTimeToPlay(Timer input){
         Integer timeToPlay = getTimeToPlay() + input.getNumber();
 
     }
-//    public void removeTime(Timer unit){
-//        timers.remove(unit);
-//    }
-//    public User(List<Timer> timers, String name) {
-//       this.timers = timers;
-//       this.name =name;
-//    }
-
 
     public Integer getId(){
         return id;
