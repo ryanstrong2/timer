@@ -45,8 +45,6 @@ public class User {
         this.name = name;
         this.timeToPlay=timeToPlay;
         this.reports = reports;
-//        this.timeToPlay = timeToPlay + timer.getNumber();
-//        timer = new Timer();
     }
 
 
@@ -78,14 +76,5 @@ public class User {
         this.timeToPlay = timeToPlay;
     }
 
-//    public void setTimeToPlay(Timer timer) {
-//    }
-
-//    public Timer getTimer(){ return timer;}
-
-//    public void setTimer(Timer timer) {
-//        this.timer = timer;
-//    }
-    //    public void addMinute(Timer newUser){ timers.add(minute)}
 
 }
