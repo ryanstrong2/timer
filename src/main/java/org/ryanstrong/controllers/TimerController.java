@@ -34,29 +34,13 @@ public class TimerController {
     @Autowired
     private UserDao userDao;
 
-
-//    @ManyToOne
-//    private User user;
-// Timer timer;
-
     @OneToMany
     @org.ryanstrong.models.JoinColumn(name="User_id")
     private List<User> users = new ArrayList<>();
 
-//    @ManyToOne
-//    @JoinColumn(name="timer_id")
-//    private List<User> users
-//            = new ArrayList<>()
-//            ;
 
-//    @ManyToOne
-//    private List<User> users;
-
-        //Request path: /timer
     @RequestMapping(value="")
     public String index(Model model){
-//            times.add("one");
-//       todo get findAll to work
         model.addAttribute("timer", timerDao.findAll());
                         //("key", localVariable or "enter the string")
         model.addAttribute("title", "Strong Timer");
