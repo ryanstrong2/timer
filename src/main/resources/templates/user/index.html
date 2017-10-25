@@ -2,18 +2,24 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments::head"></head>
 <body class="container">
+
 <h1 th:text="${title}">Strong</h1>
+
 <nav th:replace="fragments:: header"></nav>
 
 <ul>
     <li th:each="user : ${users}">
         <a th:href="'/user/view/' + ${user.id}" th:text="${user.name}"></a>
+
+        <!--<a th:href="'http://ryanstrong.org/timer/src/main/resources/templates/user/view/' + ${user.id}" th:text="${user.name}"></a>-->
     </li>
 </ul>
-
+<!--todo http://ryanstrong.org/timer/src/main/resources/templates-->
 <p><a href="/user/add">Add User</a>  |
 <a href="/user/remove">Remover User</a>
 
 </p>
+
+
 </body>
 </html>
