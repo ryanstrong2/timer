@@ -2,11 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments::head"></head>
 <body class="container">
-<script>
-    var date = new Date();
-    document.body.innerHTML = "<h4> " + (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear() + "</h4>";
-</script>
 <h2 th:text="${title}"> Strong Report</h2>
+
+<!--<script src="script.js" defer ></script>-->
 
 <nav th:replace="fragments:: header"></nav>
 
@@ -21,4 +19,8 @@
     </tr>
 </table>
 </body>
+
+<!--<script src="js/script.js" ></script>-->
+<!--/Users/ryanstrong/code/timer/src/main/resources/static/js/script.js-->
+
 </html>
