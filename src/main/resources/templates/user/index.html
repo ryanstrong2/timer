@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments::head"></head>
+<nav th:replace="fragments::date"></nav>
 <body class="container">
 
 <h1 th:text="${title}">Strong</h1>
@@ -19,7 +20,6 @@
 <a href="/user/remove">Remover User</a>
 
 </p>
-
 
 </body>
 </html>

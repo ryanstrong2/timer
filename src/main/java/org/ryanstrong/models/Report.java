@@ -27,25 +27,16 @@ public class Report {
     private Integer timeToPlay;
     private String userName;
 
-//    @ManyToOne
-//    private User user;
-
-
-
     public Report(){}
-
-
 
     public Report(
             Instant instant,
-//            Date record,
             User user,
             Integer timeToPlay
            , String userName){
 
         this.instant=instant;
         this.user=user;
-//        this.record=record;
         this.timeToPlay=timeToPlay;
         this.userName=userName;
     }
@@ -61,8 +52,6 @@ public class Report {
 
     public void setId(Integer id){this.id=id;}
 
-//    public Date getRecord(){return record;}
-
     public Integer getTimeToPlay() {
         return timeToPlay;
     }
@@ -71,7 +60,6 @@ public class Report {
         this.timeToPlay = timeToPlay;
     }
 
-//    public void setRecord(Date record){this.record=record;}
     public User getUser() {
         return user;
     }

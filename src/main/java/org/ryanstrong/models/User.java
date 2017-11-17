@@ -1,6 +1,5 @@
 package org.ryanstrong.models;
 
-
 import javax.persistence.*;
 import javax.persistence.JoinColumn;
 import javax.validation.constraints.NotNull;
@@ -23,20 +22,8 @@ public class User {
     @JoinColumn(name = "user_id")
     private List<Report> reports;
 
-//    @ManyToOne
-//    private Timer timer;
-
-//    @OneToOne
-//    @JoinColumn(name="Timer_Id")
-//    private Timer timers;
-
     @ManyToMany
     private List<Timer> timers;
-
-//    @ManyToOne
-
-//    @OneToMany
-//    private List<Timer> timers;
 
     public User() {
     }
@@ -47,11 +34,8 @@ public class User {
         this.reports = reports;
     }
 
-
-
     public void aTimeToPlay(Timer input){
         Integer timeToPlay = getTimeToPlay() + input.getNumber();
-
     }
 
     public Integer getId(){
@@ -75,6 +59,4 @@ public class User {
     public void setTimeToPlay(Integer timeToPlay) {
         this.timeToPlay = timeToPlay;
     }
-
-
 }

@@ -27,7 +27,6 @@ public class ReportController {
     @RequestMapping(value="", method = RequestMethod.GET)
     public String index(Model model
     ){
-
         model.addAttribute("title", "Reports");
         model.addAttribute("reports", reportDao.findAll());
         model.addAttribute("report", "Report Page");

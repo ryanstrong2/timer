@@ -18,9 +18,6 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
-//import java.util.ArrayList;
-
-
 /**
  * Created by ryanstrong
  */
@@ -38,14 +35,12 @@ public class TimerController {
     @org.ryanstrong.models.JoinColumn(name="User_id")
     private List<User> users = new ArrayList<>();
 
-
     @RequestMapping(value="")
     public String index(Model model){
         model.addAttribute("timer", timerDao.findAll());
                         //("key", localVariable or "enter the string")
         model.addAttribute("title", "Strong Timer");
         model.addAttribute("timers", timerDao.findAll());
-
         return "timer/index";
     }
     @RequestMapping (value="add", method = RequestMethod.GET)
@@ -60,27 +55,21 @@ public class TimerController {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Time");
         }
-//     todo get save to work
         timerDao.save(newTimer);
         return "redirect:";
     }
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String showChangeTimeForm(Model model){
-//      todo
         model.addAttribute("timers", timerDao.findAll());
         model.addAttribute("title", "Reduce Time");
         return "timer/remove";
-
     }
     @RequestMapping(value="remove", method = RequestMethod.POST)
     public String processChangeTimeForm(@RequestParam int[] timerIds){
         for(int timerId:timerIds){
-//        todo delete doesn't work
         timerDao.delete(timerId);
         }
         return "redirect:";
     }
-
-
 }
 

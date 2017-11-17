@@ -100,7 +100,6 @@ public class UserController {
             model.addAttribute("form", form);
             return "user/alter/";
         }
-
             User theUser = userDao.findOne(form.getUserId());
             Report theReport = reportDao.findOne(form.getUserId());
             List<Report> growList = theUser.getReports();
