@@ -4,11 +4,11 @@
 <body class="container">
 <h2 th:text="${title}"> Strong Report</h2>
 
-<!--<script src="script.js" defer ></script>-->
+<!--<script src="script.js" defer > use DELETE  get rid of warnings</script>-->
 
 <nav th:replace="fragments:: header"></nav>
 
-<table class="table" style="max-width:400px;">
+<table class="table table-striped" style="max-width:400px;">
     <tr>
         <th th:text="${report}"></th>
     </tr>

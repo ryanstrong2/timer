@@ -149,7 +149,6 @@ public class UserController {
         }
         User theUser = userDao.findOne(form.getUserId());
         Timer theTimer = timerDao.findOne(form.getTimerId());
-
         userDao.save(theUser);
         return "redirect:/user/view/" + theUser.getId();
     }
@@ -187,7 +186,6 @@ public class UserController {
         Integer theTimerId = form.getTimerId();
         Integer total = theNumber - theTimerId;
         theUser.setTimeToPlay(total);
-
         newReport.setTimeToPlay(total);
         newReport.setUser(theUser);
         newReport.setUserName(theUser.getName());
@@ -220,7 +218,6 @@ public class UserController {
         }
         for (int timerId:timerIds){
             timerDao.delete(timerId);}
-
         User theUser = userDao.findOne(userId);
         Timer theTimer = timerDao.findOne(form.getTimerId());
         userDao.save(theUser);
@@ -229,7 +226,6 @@ public class UserController {
 
     @RequestMapping(value="view/{userId}", method = RequestMethod.GET)
     public  String view(Model model, @PathVariable Integer userId){
-
         User user = userDao.findOne(userId);
         model.addAttribute("title", user.getName());
         model.addAttribute("timeToPlay", user.getTimeToPlay());
