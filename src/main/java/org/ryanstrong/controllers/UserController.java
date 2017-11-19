@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
-import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -110,12 +112,11 @@ public class UserController {
             newReport.setTimeToPlay(total);
             newReport.setUser(theUser);
             newReport.setUserName(theUser.getName());
-            newReport.setInstant(Instant.now());
+            newReport.setInstant(LocalDateTime.now().atZone(ZoneId.of("GMT")).format(DateTimeFormatter.RFC_1123_DATE_TIME));
             reportDao.save(newReport);
             userDao.save(theUser);
             return "redirect:/user/view/"+ theUser.getId();
     }
-
     @RequestMapping(value="remove", method=RequestMethod.GET)
     public String displayRemoveUserForm(Model model){
         model.addAttribute("users", userDao.findAll());
@@ -165,7 +166,6 @@ public class UserController {
         model.addAttribute("userId", userId);
         model.addAttribute("form", form);
         model.addAttribute("users", userDao.findAll());
-
         return "user/remove-time";
     }
 
@@ -188,7 +188,8 @@ public class UserController {
         newReport.setTimeToPlay(total);
         newReport.setUser(theUser);
         newReport.setUserName(theUser.getName());
-        newReport.setInstant(Instant.now());
+        newReport.setInstant(LocalDateTime.now().atZone(ZoneId.of("GMT")).format(DateTimeFormatter.
+                RFC_1123_DATE_TIME));
         reportDao.save(newReport);
         userDao.save(theUser);
         return "redirect:/user/view/" + theUser.getId();
