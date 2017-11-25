@@ -4,7 +4,7 @@
 <body class="container">
 <h1 th:text="${title}">Title</h1>
 <nav th:replace="fragments:: header"></nav>
-<form method="post" style="max-width:600px;">
+<form method="post" style="max-width:600px; margin:50px;">
     <div th:each="user:${users}" class="checkbox">
         <input type="checkbox" name="userIds" th:value="${user.id}" th:id="${user.id}"/>
         <label th:for="${user.id}" th:text="${user.name}"></label>

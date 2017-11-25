@@ -5,7 +5,7 @@
 <h1 th:text="${title}">Title</h1>
 <nav th:replace="fragments:: header"></nav>
 
-<form method="post" style="max-width:600px;">
+<form method="post" style="max-width:600px; margin-top:50px;">
     <div th:each="timer:${timers}" class="checkbox">
         <input type="checkbox" name="timerIds" th:value="${timer.id}" th:id="${timer.id}"/>
         <label th:for="${timer.id}" th:text="${timer.number}"></label>

@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments::head"></head>
-<body class="container">
-<h2 th:text="${title}"> Strong Report</h2>
-
+<body class="container" style="max-width:400px; margin:50px;">
 <!--<script src="script.js" defer > use DELETE  get rid of warnings</script>-->
-
 <nav th:replace="fragments:: header"></nav>
-
-<table class="table table-striped" style="max-width:400px;">
+<!--todo make last week report-->
+<!--<p>Most time</p>  -->
+<!--<button onclick="mostTime()">Find</button>-->
+<!--<p id="text"></p>-->
+<!--<script th:inline="javascript">-->
+<!--var allTimes = af[[report:${reports}] [${report.timeToPlay}]]-->
+<!--document.getElementById("text").innerHTML = allTimes;-->
+<!--function mostTime() {-->
+    <!--allTimes.sort(function(a, b){return b - a});-->
+    <!--document.getElementById("text").innerHTML = allTimes;-->
+    <!--}-->
+<!--</script>-->
+<!--<button onclick="lastWeek()">Week Report</button>-->
+<table class="table table-striped" style="max-width:400px; margin:70px;">
     <tr>
         <th th:text="${report}"></th>
     </tr>
     <tr th:each="report:${reports}">
-        <td th:text="${report.userName}"></td>
         <td th:text="${report.instant}"></td>
+        <td th:text="${report.userName}"></td>
         <td th:text="${report.timeToPlay}"></td>
     </tr>
 </table>
 </body>
-
-<!--<script src="js/script.js" ></script>-->
-<!--/Users/ryanstrong/code/timer/src/main/resources/static/js/script.js-->
 
 </html>

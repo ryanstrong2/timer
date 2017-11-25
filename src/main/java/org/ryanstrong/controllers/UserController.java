@@ -124,7 +124,14 @@ public class UserController {
         return  "user/remove";
     }
     @RequestMapping(value="remove", method = RequestMethod.POST)
-    public String processRemoveUserForm(@RequestParam Integer [] userIds){
+    public String processRemoveUserForm(Model model, @RequestParam Integer [] userIds, Errors errors){
+        if(errors.hasErrors()){
+//todo handle error 'userIds' is not present
+            return "user/remove";
+        }
+//        if(userIds == null) {
+//            return "user/remove";
+//        }
         for (int userId:userIds){
             userDao.delete(userId);
         }

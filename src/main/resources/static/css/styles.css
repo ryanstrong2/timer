@@ -4,12 +4,15 @@ font-family: sans-serif;
 
 nav { margin-bottom: 20px;
 margin-left: 20px;}
-h1 { margin-left:55px;}
-h2 { margin-left:55px;}
-h3 { margin-left:55px;}
-h4 { margin-left:55px;}
-h5 { margin-left:55px;}
-h6 { margin-left:55px;}
+body {margin-left:55px; margin-top: 105px;}
+h1 { margin-left:55px; margin-top: 75px;}
+h2 { margin-left:55px; margin-top: 75px;}
+h3 { margin-left:55px; margin-top: 75px;}
+h4 { margin-left:55px; margin-top: 75px;}
+h5 { margin-left:55px; margin-top: 75px;}
+h6 { margin-left:55px; margin-top: 75px;}
+title {margin-left:55px; margin-top: 105px;}
+
 p {margin: 20px 12px 21px}
-table {margin-left:40px;}
+table {margin-left:40px; margin-top: 105px;}
 css cheatsheet websitesetup.org/css

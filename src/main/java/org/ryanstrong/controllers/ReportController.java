@@ -29,6 +29,7 @@ public class ReportController {
     ){
         model.addAttribute("title", "Reports");
         model.addAttribute("reports", reportDao.findAll());
+        model.addAttribute("aTimes", reportDao.findAll());
         model.addAttribute("report", "Report Page");
         return "report/index";
     }

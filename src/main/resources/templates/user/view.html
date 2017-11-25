@@ -3,7 +3,7 @@
 <head th:replace="fragments::head"></head>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 
-<body class="container">
+<body class="container" style="margin-top:110px">
 <h1 th:text="${title}">Strong</h1>
 <nav th:replace="fragments:: header"></nav>
 <p th:each="timer: *{timers}"
@@ -11,11 +11,9 @@
 <ul >
     <li th:text="${timeToPlay}">number</li>
 </ul>
-<p th:each="user : ${users}">
+<p th:each="user : ${users}" >
     <a th:href ="'/user/alter/' + ${user.id}" th:text="${user.name } + '  Add'"> Add Time </a>  |
     <a th:href="'/user/remove-time/' + ${user.id}" th:text="${user.name} + '  Subtract'">Remove Time</a>
 </p>
-
-
 </body>
 </html>

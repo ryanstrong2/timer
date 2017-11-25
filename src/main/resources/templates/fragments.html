@@ -6,41 +6,45 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
-    <script type="text/javascript" th:src="@{/js/script.js}"></script>-->
 </head>
-<nav th:fragment="date">
+<nav th:fragment="date" style="max-width:400px; margin:120px;">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 </nav>
 <body>
 <nav th:fragment="navigationTimer">
-    <!--<a href="/timer">Time List</a>  |-->
-    <a href="/timer/add">Add a Time</a>  |
-    <a href="/timer/remove">Remove Time</a>
+    <ul class="nav nav-pills">
+        <li role="presentation"><a href="/timer/add">Add a Time</a> </li>
+        <li role="presentation"><a href="/timer/remove">Remove Time</a></li>
+    </ul>
 </nav>
 <nav th:fragment="nav">
-    <a href="/user">Users</a>  |
-    <a href="/user/alter/">Adjust User's Time </a>  |
-    <a href="/timer/remove-time">Remove</a>
+    <ul class="nav nav-pills">
+        <li role="presentation"><a href="/user">Users</a>  </li>
+        <li role="presentation"><a href="/user/alter/">Adjust User's Time </a></li>
+        <li role="presentation"><a href="/timer/remove-time">Remove</a></li>
+    </ul>
 </nav>
-<nav th:fragment="header">
+<nav th:fragment="header" class="navbar navbar-default navbar-fixed-top">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-
     <div ng-app="myApp" ng-controller="datCtrl">
         <p>Today is {{ today | date }}</p>
     </div>
-
     <script>
     var app = angular.module('myApp', []);
     app.controller('datCtrl', function($scope) {
         $scope.today = new Date();
     });
     </script>
-    <a href="/timer">Times</a>  |
-    <a href="/report">Reports</a>  |
-    <a href="/user">Users</a>
+    <div class="container-fluid">
+        <a class="navbar-brand" th:text="${title}">Title</a>
+        <div class="navbar-header">
+            <ul class="nav nav-pills">
+                <li role="presentation"><a href="/timer">Times</a></li>
+                <li role="presentation"><a href="/report">Reports</a></li>
+                <li role="presentation"><a href="/user">Users</a></li>
+            </ul>
+        </div>
+    </div>
 </nav>
 
 </body>
