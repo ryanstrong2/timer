@@ -21,7 +21,7 @@
     <tr>
         <th th:text="${report}"></th>
     </tr>
-    <tr th:each="report:${reports}">
+    <tr th:each="report,iter :${reports}" th:if="${iter.index >= iter.size-7}">
         <td th:text="${report.instant}"></td>
         <td th:text="${report.userName}"></td>
         <td th:text="${report.timeToPlay}"></td>

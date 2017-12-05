@@ -126,7 +126,6 @@ public class UserController {
     @RequestMapping(value="remove", method = RequestMethod.POST)
     public String processRemoveUserForm(Model model, @RequestParam Integer [] userIds, Errors errors){
         if(errors.hasErrors()){
-//todo handle error 'userIds' is not present
             return "user/remove";
         }
 //        if(userIds == null) {
