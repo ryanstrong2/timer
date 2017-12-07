@@ -21,6 +21,21 @@
     <input type="hidden" name="userId" th:value="*{user.id}"/>
     <input type="submit" value="Update time"/>
 </form>
+<form th:action="@{/user/alter}" th:object="${searchForm}">
+    <h2>Change by:</h2>
+    <ul class="form-group">
+        <li th:each="field : *{fields}">
+            <input type="radio" th:field="*{searchField}" th:value="${field}" th:checked="${field == searchField}"/>
+            <label th:for="${#ids.prev('searchField')}" th:text="${field.name}"></label>
+        </li>
+    </ul>
+
+    <div class="form-group">
+        <label th:for="keyword">Keyword</label>
+        <input class="form-control" th:field="*{keyword}" />
+    </div>
+    <input type="submit" value="Search" />
+</form>
 <form method="post" style="max-width:600px;" th:object="${report}">
     <input type="hidden" name="timeToPlay" th:value="#{report.timeToPlay}"/>
 </form>
