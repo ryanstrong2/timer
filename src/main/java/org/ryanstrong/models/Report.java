@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import java.util.Date;
 
 /**
  * Created by ryanstrong on 8/5/17.
@@ -19,12 +18,9 @@ public class Report {
     @ManyToOne
     private User user;
 
-//    @ManyToOne
-    private Date record;
+//    private Date record;
 
-//    private Instant instant;
     private String instant;
-//    private LocalDate instant;
 
     private Integer timeToPlay;
     private String userName;
@@ -34,8 +30,8 @@ public class Report {
     public Report(
             String instant,
             User user,
-            Integer timeToPlay
-           , String userName){
+            Integer timeToPlay,
+            String userName){
 
         this.instant=instant;
         this.user=user;

@@ -41,7 +41,7 @@ public class ReportController {
         model.addAttribute("timeToPlay", user.getTimeToPlay());
         model.addAttribute("userId", userId);
         model.addAttribute(new Report());
-        return "report/new/{userId}";
+        return "report/new/"+ user.getId();
     }
     @RequestMapping(value="new", method = RequestMethod.POST)
     public String addReport(Model model, @ModelAttribute @Valid Report newReport, Errors errors){

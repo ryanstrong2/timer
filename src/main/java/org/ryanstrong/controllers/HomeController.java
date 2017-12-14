@@ -6,13 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
-
-//import java.util.ArrayList;
-
 
 /**
  * Created by ryanstrong
@@ -21,8 +17,6 @@ import java.util.List;
 @RequestMapping("")
 public class HomeController {
 
-
-
     @Autowired
     private UserDao userDao;
 
@@ -30,14 +24,9 @@ public class HomeController {
     @org.ryanstrong.models.JoinColumn(name="User_id")
     private List<User> users = new ArrayList<>();
 
-
     @RequestMapping(value="")
     public String index(Model model){
-
         return "redirect:user";
     }
-
-
-
 }
 

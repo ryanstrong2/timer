@@ -11,9 +11,9 @@
 <ul >
     <li th:text="${timeToPlay}">number</li>
 </ul>
-<p th:each="user : ${users}" >
-    <a th:href ="'/user/alter/' + ${user.id}" th:text="${user.name } + '  Add'"> Add Time </a>  |
-    <a th:href="'/user/remove-time/' + ${user.id}" th:text="${user.name} + '  Subtract'">Remove Time</a>
+<p>
+    <a th:href ="'/user/alter/' + ${user}" th:text="${title } + '  Add'"> Add Time </a>  |
+    <a th:href="'/user/remove-time/' + ${user}" th:text="${title} + '  Subtract'">Remove Time</a>
 </p>
 </body>
 </html>
