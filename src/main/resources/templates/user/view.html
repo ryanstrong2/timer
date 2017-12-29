@@ -11,9 +11,6 @@
 <ul >
     <li th:text="${timeToPlay}">number</li>
 </ul>
-<p>
-    <a th:href ="'/user/alter/' + ${user}" th:text="${title } + '  Add'"> Add Time </a>  |
-    <a th:href="'/user/remove-time/' + ${user}" th:text="${title} + '  Subtract'">Remove Time</a>
-</p>
+<nav th:replace="fragments:: userViewNav"></nav>
 </body>
 </html>

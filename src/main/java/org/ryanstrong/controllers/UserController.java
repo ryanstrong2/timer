@@ -58,16 +58,13 @@ public class UserController {
         return "user/add";
     }
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String add(Model model, @ModelAttribute @Valid User newUser,
-//                      @RequestParam int timeToPlay,
-                      Errors errors){
+    public String add(Model model, @ModelAttribute @Valid User newUser, Errors errors){
         if(errors.hasErrors()){
             model.addAttribute("title", "New User");
             return "user/add";
         }
         userDao.save(newUser);
         return "redirect:view/" + newUser.getId();
-//        return "user";
     }
     @RequestMapping(value = "alter/{userId}", method = RequestMethod.GET)
     public String addTimeToPlay(Model model, @PathVariable Integer userId

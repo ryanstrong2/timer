@@ -18,6 +18,19 @@
         <li role="presentation"><a href="/timer/remove">Remove Time</a></li>
     </ul>
 </nav>
+<nav th:fragment="userNav">
+    <ul class="nav navbar-nav navbar-inverse">
+        <li role="presentation"><a href="/user/add">Add User</a></li>
+        <li role="presentation"><a href="/user/remove">Remover User</a></li>
+    </ul>
+</nav>
+<nav th:fragment="userViewNav">
+    <ul class="nav navbar-nav navbar-inverse">
+        <li role="presentation"><a th:href ="'/user/alter/' + ${user}" th:text="${title } + '  Add'"> Add Time </a>  </li>
+        <li role="presentation"><a th:href="'/user/remove-time/' + ${user}" th:text="${title} + '  Subtract'">Remove Time</a></li>
+    </ul>
+</nav>
+
 <nav th:fragment="nav">
     <ul class="nav navbar-nav navbar-inverse">
         <li role="presentation"><a href="/user">Users</a>  </li>
