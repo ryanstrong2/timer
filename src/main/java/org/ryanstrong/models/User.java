@@ -34,10 +34,9 @@ public class User {
         this.reports = reports;
     }
 
-    public void aTimeToPlay(Timer input){
-        Integer timeToPlay = getTimeToPlay() + input.getNumber();
-    }
-
+//    public void aTimeToPlay(Timer input){
+//        Integer timeToPlay = getTimeToPlay() + input.getNumber();
+//    }
     public Integer getId(){
         return id;
     }
@@ -45,14 +44,11 @@ public class User {
         this.id=id;
     }
     public String getName() {return name;}
-
     public void setName(String name) {this.name = name;}
-
     public List<Report> getReports (){return reports;
     }
     public void setReports(List<Report> reports) {this.reports = reports;
     }
-
     public Integer getTimeToPlay() {
         return timeToPlay;
     }
