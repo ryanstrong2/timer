@@ -183,7 +183,6 @@ public class UserController {
             return "user/remove-time";
         }
         User theUser = userDao.findOne(form.getUserId());
-        Timer theTimer = timerDao.findOne(form.getTimerId());
         Integer theNumber=(form.getTimeToPlay());
         Integer theTimerId = form.getTimerId();
         Integer total = theNumber - theTimerId;

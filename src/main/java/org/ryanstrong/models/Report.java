@@ -18,8 +18,6 @@ public class Report {
     @ManyToOne
     private User user;
 
-//    private Date record;
-
     private String instant;
 
     private Integer timeToPlay;
