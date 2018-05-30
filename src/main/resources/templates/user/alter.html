@@ -6,7 +6,12 @@
 <nav th:replace="fragments:: header"></nav>
 
 <label style="max-width:200px;">Time Change</label>
-<p th:text="${timeToPlay}"></p>
+<!--make timeToPlay red if it is less than one-->
+<div th:replace="fragments:: timeToPlay"> minutes to play.</div>
+<!--<p style="color:red;" th:text="${timeToPlay}"></p>-->
+<!--<p th:if="${timeToPlay}&lt;1"></p>-->
+
+
 <form method="POST" style="max-width:200px;" th:object="${form}" action="/user/alter">
     <div class="form-group">
         <select name="timerId">

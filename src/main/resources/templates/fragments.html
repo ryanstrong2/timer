@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:color="http://www.w3.org/1999/xhtml">
 <head th:fragment="head">
     <meta charset="UTF-8"/>
     <title th:text="${title}">Strong Timer</title>
@@ -60,6 +60,12 @@
         </div>
     </div>
 </nav>
-
+<div th:fragment="timeToPlay" >
+    <p style="color:red;" th:text="${timeToPlay}"
+       th:if="${timeToPlay} &lt;1">
+    </p>
+    <p th:if="${timeToPlay} &gt;0"
+       th:text="${timeToPlay}"></p>
+</div>
 </body>
 </html>

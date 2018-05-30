@@ -1,8 +1,15 @@
 package org.ryanstrong.controllers;
 
+import org.ryanstrong.models.User;
+import org.ryanstrong.models.data.UserDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ryanstrong
@@ -11,12 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("")
 public class HomeController {
 
-//    @Autowired
-//    private UserDao userDao;
-//
-//    @OneToMany
-//    @org.ryanstrong.models.JoinColumn(name="User_id")
-//    private List<User> users = new ArrayList<>();
+    @Autowired
+    private UserDao userDao;
+
+    @OneToMany
+    @org.ryanstrong.models.JoinColumn(name="User_id")
+    private List<User> users = new ArrayList<>();
 
     @RequestMapping(value="")
     public String index(Model model){

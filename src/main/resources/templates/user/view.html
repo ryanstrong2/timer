@@ -9,7 +9,8 @@
 <p th:each="timer: *{timers}"
    th:text="${timer.number}"/>
 <ul >
-    <li th:text="${timeToPlay}">number</li>
+    <li th:replace="fragments:: timeToPlay"> minutes to play.</li>
+
 </ul>
 <nav th:replace="fragments:: userViewNav"></nav>
 </body>

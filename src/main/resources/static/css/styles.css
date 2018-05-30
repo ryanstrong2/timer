@@ -156,7 +156,9 @@ fieldset[disabled] .navbar-inverse .btn-link:hover,
 fieldset[disabled] .navbar-inverse .btn-link:focus {
   color: #444;
 }
-
+.negative{
+    color: red;
+    }
 p {margin: 20px 12px 21px}
 table {margin-left:40px; margin-top: 105px;}
 css cheatsheet websitesetup.org/css

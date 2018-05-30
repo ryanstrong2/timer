@@ -4,7 +4,9 @@
 <body class="container" style=" margin-top:150px;">
 <!--<h1 th:text="${title}">Title</h1>-->
 <nav th:replace="fragments:: header"></nav>
-<p th:text="${timeToPlay}">minutes available.</p>
+<div th:replace="fragments:: timeToPlay">minutes available.</div>
+
+<!--<p th:text="${timeToPlay}">minutes available.</p>-->
 <form method="POST" style="max-width:200px; " th:object="${form}" action="/user/remove-time">
     <div class="form-group">
         <select name="timerId">

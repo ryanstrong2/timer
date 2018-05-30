@@ -33,10 +33,6 @@ public class User {
         this.timeToPlay=timeToPlay;
         this.reports = reports;
     }
-
-//    public void aTimeToPlay(Timer input){
-//        Integer timeToPlay = getTimeToPlay() + input.getNumber();
-//    }
     public Integer getId(){
         return id;
     }

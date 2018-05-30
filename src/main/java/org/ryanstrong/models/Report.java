@@ -19,7 +19,6 @@ public class Report {
     private User user;
 
     private String instant;
-
     private Integer timeToPlay;
     private String userName;
 
