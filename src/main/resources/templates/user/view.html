@@ -2,6 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments::head"></head>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="../compiled/flipclock.js"></script>
 
 <body class="container" style="margin-top:110px">
 <h1 th:text="${title}">Strong</h1>
@@ -20,14 +22,24 @@ p {
 }
 </style>
 
-<!--<body>-->
-
+    <!--<div class="clock" style="margin:2em;"></div>-->
+    <!--<script type="text/javascript">-->
+        <!--var clock;-->
+        <!--$(document).ready(function(){-->
+            <!--clock = new FlipClock($('.clock'), {-->
+            <!--clockFace: 'Counter',-->
+            <!--autoStart: true-->
+            <!--});-->
+            <!--});-->
+    <!--</script>-->
 <p id="demo"></p>
 
+
 <script>
-<!--var timeToPlay = th:value="${timeToPlay}";-->
+var timeToPlay = ".$getTimeToPlay."
+<!--th:value="${timeToPlay}";-->
 var now = new Date().getTime();
-var countDownDate = now + (".$user.getTimeToPlay." * (1000 * 60));
+var countDownDate = now + (30 * (1000 * 60));
 
 var x = setInterval(function() {
 
@@ -41,7 +53,8 @@ var x = setInterval(function() {
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     // Output the result in an element with id="demo"
-    document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+    document.getElementById("demo").innerHTML =
+    <!--days + "d " + hours + "h "-->
     + minutes + "m " + seconds + "s ";
     // If the count down is over, write some text
     <!--if (countDownDate < 0) {-->
