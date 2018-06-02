@@ -15,6 +15,21 @@
         <span th:errors="*{name}" class="error"></span>
     </div>
     <div class="form-group">
+        <label th:for="password">Password</label>
+        <input class="form-control" type="password" th:field="*{password}"/>
+        <span th:errors="*{password}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="password">Confirm Password</label>
+        <input class="form-control" type="password" th:field="*{password}"/>
+        <span th:errors="*{password}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="email">Optional email</label>
+        <input class="form-control" type="email" th:field="*{email}"/>
+        <span th:errors="*{email}" class="error"></span>
+    </div>
+    <div class="form-group">
         <label th:for="timeToPlay">Time To Play</label>
         <input class="form-control" th:field="*{timeToPlay}"/>
         <span th:errors="*{timeToPlay}" class="error"></span>

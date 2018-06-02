@@ -17,7 +17,10 @@ public class User {
     @NotNull
     private String name;
 
+    private String password;
+
     private Integer timeToPlay = 0;
+
     @OneToMany
     @JoinColumn(name = "user_id")
     private List<Report> reports;
@@ -28,8 +31,9 @@ public class User {
     public User() {
     }
 
-    public User(String name, Integer timeToPlay,List<Report> reports) {
+    public User(String name, String password, Integer timeToPlay,List<Report> reports) {
         this.name = name;
+        this.password = password;
         this.timeToPlay=timeToPlay;
         this.reports = reports;
     }
@@ -41,6 +45,8 @@ public class User {
     }
     public String getName() {return name;}
     public void setName(String name) {this.name = name;}
+    public String getPassword() {return password;}
+    public void setPassword(String password) {this.password=password;}
     public List<Report> getReports (){return reports;
     }
     public void setReports(List<Report> reports) {this.reports = reports;
