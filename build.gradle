@@ -9,6 +9,13 @@ buildscript {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
 }
+configurations.all{
+    resolutionStrategy.eachDependency {DependencyResolveDetails details ->
+        if (details.requested.group == 'org.springframework'){
+            details.useVersion '5.0.6.RELEASE'
+        }
+    }
+}
 
 apply plugin: 'java'
 apply plugin: 'eclipse'

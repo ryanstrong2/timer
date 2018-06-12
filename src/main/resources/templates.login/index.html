@@ -2,17 +2,31 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments::head"></head>
 <body class="container" style="max-width:400px; margin:50px;">
-<h1 th:text="${title}">Title</h1>
-<nav th:replace="fragments:: header"></nav>
-
-<form method="post" th:object="${timer}">
-    <div class="form-group">
-        <label th:for="number">Name</label>
-        <input class="form-control" th:field ="*{number}"/>
-        <span th:errors="*{number}" class="error"></span>
-    </div>
-    <input type="submit" value="Log In"/>
+<!--<h1 th:text="${title}">Title</h1>-->
+<nav th:replace="fragments :: header"></nav>
+<form name = 'f' action="login" method="post">
+    <table>
+        <tr>
+            <td>User:</td>
+            <td><input type="text" name="username"/></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" name="password"/></td>
+        </tr>
+        <tr>
+            <td><input name="submit" type="submit" value="submit"/></td>
+        </tr>
+    </table>
 </form>
+<!--<form method="post" th:object="${timer}">-->
+    <!--<div class="form-group">-->
+        <!--<label th:for="number">Name</label>-->
+        <!--<input class="form-control" th:field ="*{number}"/>-->
+        <!--<span th:errors="*{number}" class="error"></span>-->
+    <!--</div>-->
+    <!--<input type="submit" value="Log In"/>-->
+<!--</form>-->
 
 </body>
 </html>
