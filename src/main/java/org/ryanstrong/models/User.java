@@ -21,6 +21,8 @@ public class User {
 
     private Integer timeToPlay = 0;
 
+    private String email;
+
     @OneToMany
     @JoinColumn(name = "user_id")
     private List<Report> reports;
@@ -31,11 +33,12 @@ public class User {
     public User() {
     }
 
-    public User(String name, String password, Integer timeToPlay,List<Report> reports) {
+    public User(String name, String password, Integer timeToPlay,List<Report> reports, String email) {
         this.name = name;
         this.password = password;
         this.timeToPlay=timeToPlay;
         this.reports = reports;
+        this.email = email;
     }
     public Integer getId(){
         return id;
@@ -57,4 +60,6 @@ public class User {
     public void setTimeToPlay(Integer timeToPlay) {
         this.timeToPlay = timeToPlay;
     }
+    public String getEmail(){return email;}
+    public void setEmail(String email) {this.email=email;}
 }

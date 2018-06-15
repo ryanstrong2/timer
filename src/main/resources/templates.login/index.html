@@ -4,21 +4,29 @@
 <body class="container" style="max-width:400px; margin:50px;">
 <!--<h1 th:text="${title}">Title</h1>-->
 <nav th:replace="fragments :: header"></nav>
-<form name = 'f' action="login" method="post">
-    <table>
-        <tr>
-            <td>User:</td>
-            <td><input type="text" name="username"/></td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><input type="password" name="password"/></td>
-        </tr>
-        <tr>
-            <td><input name="submit" type="submit" value="submit"/></td>
-        </tr>
-    </table>
+<p th:if="${loginError}" class="error">Incorrect name or password.</p>
+<form th:action="@{/login.html}" method="post">
+    <label for="username">Username</label>:
+    <input type="text" id="username" name="username" autofocus="autofocus"/> <br/>
+    <label for="password">Password</label>:
+    <input type="password" id="password" name="password"/><br/>
+    <input type="submit" value="Log in" />
 </form>
+<!--<form name = 'f' action="login" method="post">-->
+    <!--<table>-->
+        <!--<tr>-->
+            <!--<td>User:</td>-->
+            <!--<td><input type="text" name="username"/></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td>Password:</td>-->
+            <!--<td><input type="password" name="password"/></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td><input name="submit" type="submit" value="submit"/></td>-->
+        <!--</tr>-->
+    <!--</table>-->
+<!--</form>-->
 <!--<form method="post" th:object="${timer}">-->
     <!--<div class="form-group">-->
         <!--<label th:for="number">Name</label>-->

@@ -29,5 +29,16 @@ public class HomeController {
     public String index(Model model){
         return "redirect:user";
     }
+
+    @RequestMapping("/login.html")
+    public String login(){
+        return "login.html";
+    }
+
+    @RequestMapping("/login-error.html")
+    public String loginError(Model model){
+        model.addAttribute("loginError", true);
+        return "login.html";
+    }
 }
 
