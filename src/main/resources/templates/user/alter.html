@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments::head"></head>
 <body class="container">
 <h2 th:text="${title}">Strong Title</h2>
@@ -44,6 +44,9 @@
 <form method="post" style="max-width:600px;" th:object="${report}">
     <input type="hidden" name="timeToPlay" th:value="#{report.timeToPlay}"/>
 </form>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+    This content is only shown to <b>users</b>.
+</div>
 <nav th:replace="fragments:: footer"></nav>
 
 </body>

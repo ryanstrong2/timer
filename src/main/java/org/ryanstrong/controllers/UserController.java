@@ -121,10 +121,10 @@ public class UserController {
         return  "user/remove";
     }
     @RequestMapping(value="remove", method = RequestMethod.POST)
-    public String processRemoveUserForm(Model model, @RequestParam Integer [] userIds, Errors errors){
-        if(errors.hasErrors()){
-            return "user/remove";
-        }
+    public String processRemoveUserForm(Model model, @RequestParam Integer [] userIds){
+//        if(errors.hasErrors()){
+//            return "user/remove";
+//        }
 //        if(userIds == null) {
 //            return "user/remove";
 //        }
