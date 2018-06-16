@@ -66,6 +66,12 @@ public class UserController {
         userDao.save(newUser);
         return "redirect:view/" + newUser.getId();
     }
+    @RequestMapping(value="login")
+    public String login(Model model){
+        model.addAttribute("title", "Users");
+        model.addAttribute("users", userDao.findAll());
+        return "user/index";
+    }
     @RequestMapping(value = "alter/{userId}", method = RequestMethod.GET)
     public String addTimeToPlay(Model model, @PathVariable Integer userId
 //                                , @ModelAttribute Report report

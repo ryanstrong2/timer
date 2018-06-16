@@ -27,7 +27,7 @@ public class HomeController {
 
     @RequestMapping(value="")
     public String index(Model model){
-        return "redirect:user";
+        return "redirect:user/login";
     }
 
     @RequestMapping("/login.html")

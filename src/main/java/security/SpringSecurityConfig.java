@@ -17,7 +17,7 @@ public class SpringSecurityConfig {
 //                .failureUrl("/login-error.html")
 //            .and()
 //                .logout()
-//                .logoutSuccess("/index.html");
+//                .logoutSuccess("/login.html");
 
     }
 

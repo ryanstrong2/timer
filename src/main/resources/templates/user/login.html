@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+<nav th:replace="fragments::date"></nav>
+<body class="container" style="max-width:400px; margin:50px; margin-top: 00px;">
+
+<nav th:replace="fragments:: header"></nav>
+<ul >
+    <li th:each="user : ${users}">
+        <a th:href="'/user/view/' + ${user.id}" th:text="${user.name}"></a>
+        <!--<a th:href="'http://ryanstrong.org/timer/src/main/resources/templates/user/view/' + ${user.id}" th:text="${user.name}"></a>-->
+    </li>
+</ul>
+<nav th:replace="fragments:: userNav"></nav>
+
+
+</body>
+</html>
