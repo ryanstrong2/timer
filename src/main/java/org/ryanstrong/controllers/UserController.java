@@ -1,5 +1,6 @@
 package org.ryanstrong.controllers;
 
+import org.ryanstrong.models.Login;
 import org.ryanstrong.models.Report;
 import org.ryanstrong.models.Timer;
 import org.ryanstrong.models.User;
@@ -66,11 +67,12 @@ public class UserController {
         userDao.save(newUser);
         return "redirect:view/" + newUser.getId();
     }
-    @RequestMapping(value="login")
+    @RequestMapping(value="login", method = RequestMethod.GET)
     public String login(Model model){
-        model.addAttribute("title", "Users");
-        model.addAttribute("users", userDao.findAll());
-        return "user/index";
+        model.addAttribute("title", "LOG in");
+        model.addAttribute("login", new Login());
+
+        return "user/login";
     }
     @RequestMapping(value = "alter/{userId}", method = RequestMethod.GET)
     public String addTimeToPlay(Model model, @PathVariable Integer userId

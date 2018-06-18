@@ -48,7 +48,7 @@ public class LoginController {
     public String index(Model model) {
         model.addAttribute("title", "LOG IN");
 //        model.addAttribute("users", userDao.findAll());
-        return "user/index";
+        return "login/index";
     }
 
     @RequestMapping(value = "registration", method = RequestMethod.GET)

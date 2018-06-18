@@ -5,12 +5,26 @@
 <body class="container" style="max-width:400px; margin:50px; margin-top: 00px;">
 
 <nav th:replace="fragments:: header"></nav>
-<ul >
-    <li th:each="user : ${users}">
-        <a th:href="'/user/view/' + ${user.id}" th:text="${user.name}"></a>
-        <!--<a th:href="'http://ryanstrong.org/timer/src/main/resources/templates/user/view/' + ${user.id}" th:text="${user.name}"></a>-->
-    </li>
-</ul>
+<form method="post" style="max-width:600px;" th:object="${user}">
+    <div class="form-group">
+        <label th:for="name">Name</label>
+        <input class="form-control" th:field="*{name}"/>
+        <input type="hidden" th:id="${user.id}"/>
+        <span th:errors="*{name}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="password">Password</label>
+        <input class="form-control" type="password" th:field="*{password}"/>
+        <span th:errors="*{password}" class="error"></span>
+    </div>
+    <input type="submit" value="Log in"/>
+</form>
+<!--<ul >-->
+    <!--<li th:each="user : ${users}">-->
+        <!--<a th:href="'/user/view/' + ${user.id}" th:text="${user.name}"></a>-->
+        <!--&lt;!&ndash;<a th:href="'http://ryanstrong.org/timer/src/main/resources/templates/user/view/' + ${user.id}" th:text="${user.name}"></a>&ndash;&gt;-->
+    <!--</li>-->
+<!--</ul>-->
 <nav th:replace="fragments:: userNav"></nav>
 
 
