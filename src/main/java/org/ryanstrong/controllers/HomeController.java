@@ -27,18 +27,18 @@ public class HomeController {
 
     @RequestMapping(value="")
     public String index(Model model){
-        return "redirect:user/login";
+        return "redirect:user";
     }
 
-    @RequestMapping("/login.html")
-    public String login(){
-        return "login.html";
-    }
-
-    @RequestMapping("/login-error.html")
-    public String loginError(Model model){
-        model.addAttribute("loginError", true);
-        return "login.html";
-    }
+//    @RequestMapping("login")
+//    public String login(){
+//        return "login.html";
+//    }
+//
+//    @RequestMapping("/login-error.html")
+//    public String loginError(Model model){
+//        model.addAttribute("loginError", true);
+//        return "login.html";
+//    }
 }
 

@@ -11,7 +11,7 @@
 <p th:each="timer: *{timers}"
    th:text="${timer.number}"/>
 <ul >
-    <li th:replace="fragments:: timeToPlay"> minutes to play.</li>
+    <li th:replace="fragments:: timeToPlay"> "minutes to play."</li>
 </ul>
 <!--<meta name="viewport" content="width=device-width, initial-scale=1"/>-->
 <style>
@@ -34,35 +34,6 @@ p {
     <!--</script>-->
 <p id="minutes"></p>
 
-
-<script>
-var timeToPlay = ".$getTimeToPlay."
-<!--th:value="${timeToPlay}";-->
-var now = new Date().getTime();
-var countDownDate = now + (30 * (1000 * 60));
-
-var x = setInterval(function() {
-
-    // Get todays date and time
-    var now = new Date().getTime();
-
-    var distance = countDownDate - now;
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    // Output the result in an element with id="minutes"
-    document.getElementById("minutes").innerHTML =
-    <!--days + "d " + hours + "h "-->
-    + minutes + "m " + seconds + "s ";
-    // If the count down is over, write some text
-    <!--if (countDownDate < 0) {-->
-        <!--clearInterval(x);-->
-        <!--document.getElementById("demo").innerHTML = "EXPIRED";-->
-    <!--}-->
-}, 1000);
-</script>
 <nav th:replace="fragments:: userViewNav"></nav>
 </body>
 </html>

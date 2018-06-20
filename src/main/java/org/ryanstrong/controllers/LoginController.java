@@ -1,6 +1,7 @@
 package org.ryanstrong.controllers;
 
 import org.ryanstrong.models.Timer;
+import org.ryanstrong.models.User;
 import org.ryanstrong.models.data.ReportDao;
 import org.ryanstrong.models.data.TimerDao;
 import org.ryanstrong.models.data.UserDTO;
@@ -46,16 +47,31 @@ public class LoginController {
 
     @RequestMapping(value="")
     public String index(Model model) {
-        model.addAttribute("title", "LOG IN");
+        model.addAttribute("title", "LOG LOG IN");
 //        model.addAttribute("users", userDao.findAll());
         return "login/index";
     }
 
-    @RequestMapping(value = "registration", method = RequestMethod.GET)
-    public String showRegistrationForm(WebRequest request, Model model) {
-        UserDTO userDto = new UserDTO();
-        model.addAttribute("user", userDto);
-        return "registration";
+//    @RequestMapping(value = "registration", method = RequestMethod.GET)
+//    public String showRegistrationForm(WebRequest request, Model model) {
+//        UserDTO userDto = new UserDTO();
+//        model.addAttribute("user", userDto);
+//        return "login/registration";
+//    }
+    @RequestMapping (value="registration", method = RequestMethod.GET)
+    public String registration(Model model){
+        model.addAttribute("title", "New User");
+        model.addAttribute(new User());
+        return "login/registration";
+    }
+    @RequestMapping(value = "registration", method = RequestMethod.POST)
+    public String registration(Model model, @ModelAttribute @Valid User newUser, Errors errors){
+        if(errors.hasErrors()){
+            model.addAttribute("title", "New User");
+            return "login/registration";
+        }
+        userDao.save(newUser);
+        return "redirect:view/" + newUser.getId();
     }
 
     public ModelAndView registerUserAccount(

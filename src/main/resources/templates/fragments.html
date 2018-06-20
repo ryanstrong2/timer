@@ -53,6 +53,7 @@
         <a class="navbar-brand" th:text="${title}">Title</a>
         <div class="navbar-header">
             <ul class="nav navbar-nav">
+                <li role="presentation"><a href="/timer/timer">Timer</a> </li>
                 <li role="presentation"><a href="/timer">Times</a></li>
                 <li role="presentation"><a href="/report">Reports</a></li>
                 <li role="presentation"><a href="/user">Users</a></li>
@@ -66,6 +67,7 @@
     </p>
     <p th:if="${timeToPlay} &gt;0"
        th:text="${timeToPlay}"></p>
+    <p>minutes to play</p>
 </div>
 </body>
 </html>

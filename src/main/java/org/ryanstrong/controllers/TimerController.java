@@ -71,5 +71,13 @@ public class TimerController {
         }
         return "redirect:";
     }
+    @RequestMapping(value="timer", method = RequestMethod.GET)
+    public String countDown(Model model) {
+        model.addAttribute("timers", timerDao.findAll());
+        model.addAttribute("title", "Count Down");
+        return "timer/timer";
+
+    }
+
 }
 

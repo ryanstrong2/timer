@@ -1,6 +1,5 @@
 package org.ryanstrong.controllers;
 
-import org.ryanstrong.models.Login;
 import org.ryanstrong.models.Report;
 import org.ryanstrong.models.Timer;
 import org.ryanstrong.models.User;
@@ -67,21 +66,21 @@ public class UserController {
         userDao.save(newUser);
         return "redirect:view/" + newUser.getId();
     }
-    @RequestMapping(value="login", method = RequestMethod.GET)
-    public String login(Model model){
-        model.addAttribute("title", "LOG in");
-        model.addAttribute("login", new Login());
-
-        return "user/login";
-    }
+//    @RequestMapping(value="login", method = RequestMethod.GET)
+//    public ModelAndView log(HttpServletRequest request){
+//        model.addAttribute("title", "LOG in");
+//        model.addAttribute("login", new Login());
+//
+//        return "user/login";
+//    }
+//    @RequestMapping(value = "login", method = RequestMethod.POST)
+//    public String login(Model model, @ModelAttribute @Valid User)
     @RequestMapping(value = "alter/{userId}", method = RequestMethod.GET)
     public String addTimeToPlay(Model model, @PathVariable Integer userId
-//                                , @ModelAttribute Report report
     ){
         User user = userDao.findOne(userId);
         AlterTimeForm form = new AlterTimeForm(
                 user.getTimeToPlay() , timerDao.findAll(),
-//                reportDao.findOne(userId)
                     user.getReports(),
                 user
         );
@@ -90,9 +89,7 @@ public class UserController {
         model.addAttribute("timeToPlay", user.getTimeToPlay());
         model.addAttribute("timerId", timers);
         model.addAttribute("userId", userId);
-//        model.addAttribute("record", reportDao.findOne(userId).getRecord());
         model.addAttribute("report", user.getReports());
-//        model.addAttribute(new Report());
         model.addAttribute("form", form);
         model.addAttribute("users", userDao.findAll());
         return "user/alter";
@@ -101,7 +98,6 @@ public class UserController {
     public String addTimeToPlay(Model model,  @ModelAttribute @Valid AlterTimeForm form, Errors errors
             ,@RequestParam @Valid int timeToPlay
                                 ,@ModelAttribute @Valid Report newReport
-//                                ,@RequestParam int reportId
     ){
         if (errors.hasErrors()) {
             model.addAttribute("form", form);
@@ -130,39 +126,33 @@ public class UserController {
     }
     @RequestMapping(value="remove", method = RequestMethod.POST)
     public String processRemoveUserForm(Model model, @RequestParam Integer [] userIds){
-//        if(errors.hasErrors()){
-//            return "user/remove";
-//        }
-//        if(userIds == null) {
-//            return "user/remove";
-//        }
         for (int userId:userIds){
             userDao.delete(userId);
         }
         return "redirect:";
     }
 //todo make a report for week
-    @RequestMapping(value="edit/{userId}", method = RequestMethod.GET)
-    public  String addTime(Model model, @PathVariable Integer userId){
-        User user = userDao.findOne(userId);
-        ChangeTimeForm form = new ChangeTimeForm(timerDao.findAll(), user);
-        model.addAttribute("title", "Increase time for: " + user.getName());
-        model.addAttribute("timeToPlay", user.getTimeToPlay());
-        model.addAttribute("form", form);
-        return "user/edit";
-    }
-    @RequestMapping(value="edit", method = RequestMethod.POST)
-    public String addTime(Model model, @ModelAttribute @Valid ChangeTimeForm form,
-                       @RequestParam int timerId, @RequestParam int userId, Errors errors){
-        if(errors.hasErrors()){
-            model.addAttribute("form", form);
-            return "user/edit";
-        }
-        User theUser = userDao.findOne(form.getUserId());
-        Timer theTimer = timerDao.findOne(form.getTimerId());
-        userDao.save(theUser);
-        return "redirect:/user/view/" + theUser.getId();
-    }
+//    @RequestMapping(value="edit/{userId}", method = RequestMethod.GET)
+//    public  String addTime(Model model, @PathVariable Integer userId){
+//        User user = userDao.findOne(userId);
+//        ChangeTimeForm form = new ChangeTimeForm(timerDao.findAll(), user);
+//        model.addAttribute("title", "Increase time for: " + user.getName());
+//        model.addAttribute("timeToPlay", user.getTimeToPlay());
+//        model.addAttribute("form", form);
+//        return "user/edit";
+//    }
+//    @RequestMapping(value="edit", method = RequestMethod.POST)
+//    public String addTime(Model model, @ModelAttribute @Valid ChangeTimeForm form,
+//                       @RequestParam int timerId, @RequestParam int userId, Errors errors){
+//        if(errors.hasErrors()){
+//            model.addAttribute("form", form);
+//            return "user/edit";
+//        }
+//        User theUser = userDao.findOne(form.getUserId());
+//        Timer theTimer = timerDao.findOne(form.getTimerId());
+//        userDao.save(theUser);
+//        return "redirect:/user/view/" + theUser.getId();
+//    }
     @RequestMapping(value="remove-time/{userId}", method = RequestMethod.GET)
     public  String removeTime(Model model, @PathVariable Integer userId) {
         User user = userDao.findOne(userId);
